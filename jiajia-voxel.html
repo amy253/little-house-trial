@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+ <meta name="theme-color" content="#343c65">
+ <title>家家球球消气</title>
+ <link rel="icon" href="vendor/house.svg" type="image/svg+xml">
+ <link rel="stylesheet" href="jiajia-voxel.css?v=impact-20261107">
+ <link rel="stylesheet" href="island-revive.css">
+ <script defer src="island-revive.js"></script>
+ <script defer src="jiajia-voxel.js"></script>
+ <script type="module" src="jiajia-voxel-ui.js?v=impact-20261107"></script>
+ <script defer src="mobile-screen.js?v=touch-20261106" data-touch-only></script>
+</head>
+<body>
+ <svg class="icon-sheet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="icon-home" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7v8a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" fill="currentColor"/></symbol>
+  <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M7 5h3v14H7zm7 0h3v14h-3z" fill="currentColor"/></symbol>
+  <symbol id="icon-sound" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 9q4 3 0 6m2-9q7 6 0 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="icon-center" viewBox="0 0 24 24"><path d="M12 3v4m0 10v4M3 12h4m10 0h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="2" fill="currentColor"/></symbol>
+  <symbol id="icon-spin" viewBox="0 0 24 24"><path d="M19 8a8 8 0 1 0 .6 7M19 3v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-hand" viewBox="0 0 32 32"><path d="M8 21 6 13c-.5-2 2-3 3-1l2 5V7a2 2 0 0 1 4 0v7-4a2 2 0 0 1 4 0v4-2a2 2 0 0 1 4 0v3a2 2 0 0 1 4 1v5c0 4-3 7-7 7h-5c-4 0-6-4-7-7Z" fill="#6cbdf5" stroke="#266594" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 26h12v4H13z" fill="#ffd064" stroke="#a76e24" stroke-width="1.4"/></symbol>
+  <symbol id="icon-shuffle" viewBox="0 0 32 32"><path d="M26 12c-4-8-12-7-16-2l-1 3h5l-7 7-5-8h4C8 4 17 2 23 7zM6 22c4 8 12 7 16 2l1-3h-5l7-7 5 8h-4c-2 8-11 10-17 5z" fill="#ffb747" stroke="#a56324" stroke-width="1.25" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-vacuum" viewBox="0 0 32 32"><path d="M23 16v6c0 6 6 4 6 0v-7l-4-4" fill="none" stroke="#497ca4" stroke-width="3" stroke-linecap="round"/><path d="M5 13q0-5 6-5h10q4 0 4 5v9q0 5-5 5H9q-5 0-5-5z" fill="#ee8a63" stroke="#974d39" stroke-width="1.5"/><path d="M10 8V5h10v3" fill="none" stroke="#ac6347" stroke-width="2"/><circle cx="15" cy="17" r="4" fill="#ffc767" stroke="#ad583e"/><path d="M8 26v2m12-2v2" stroke="#604b5b" stroke-width="2" stroke-linecap="round"/></symbol>
+ </svg>
+ <main id="game">
+  <header class="top">
+   <a class="round" href="index.html" aria-label="回小屋"><svg aria-hidden="true"><use href="#icon-home"/></svg></a>
+   <div class="level"><div id="fill"></div><strong id="level">关卡 1</strong></div>
+   <button class="round" id="sound" type="button" aria-label="退场音效" aria-pressed="true"><svg aria-hidden="true"><use href="#icon-sound"/></svg></button>
+   <button class="round" id="pause" type="button" aria-label="暂停"><svg aria-hidden="true"><use href="#icon-pause"/></svg></button>
+   <div id="models" aria-label="模型预览"></div>
+  </header>
+  <section class="stage" id="stage" aria-label="立体模型，滑动旋转，双指缩放">
+   <canvas id="model" tabindex="0" aria-label="立体模型"></canvas>
+   <span class="cloud cloud-left" aria-hidden="true"></span><span class="cloud cloud-right" aria-hidden="true"></span>
+   <div class="camera-controls">
+    <button class="round" id="center" type="button" aria-label="重置模型视角"><svg aria-hidden="true"><use href="#icon-center"/></svg></button>
+    <button class="round" id="spin" type="button" aria-label="自动旋转" aria-pressed="true"><svg aria-hidden="true"><use href="#icon-spin"/></svg></button>
+   </div>
+   <strong id="combo" hidden></strong>
+   <span id="gesture">滑动旋转 · 双指缩放</span>
+  </section>
+  <section class="cannon-area" aria-label="炮台和发射槽">
+   <div class="slot-tools">
+    <span id="message" role="status">点最前排的炮台</span>
+    <div class="slot-unlocks"><button type="button" id="slot-add" aria-label="解锁第七个发射槽">＋<small>解锁</small></button><button type="button" id="slot-add-2" aria-label="解锁第八个发射槽">＋<small>解锁</small></button></div>
+   </div>
+   <div id="slots" aria-label="发射槽"></div>
+   <div id="queue" aria-label="待发炮台"></div>
+  </section>
+  <footer>
+   <button type="button" id="choose" class="power"><span><svg aria-hidden="true"><use href="#icon-hand"/></svg></span>任意指<b>1</b></button>
+   <button type="button" id="shuffle" class="power"><span><svg aria-hidden="true"><use href="#icon-shuffle"/></svg></span>随机重排<b>1</b></button>
+   <button type="button" id="vacuum" class="power"><span><svg aria-hidden="true"><use href="#icon-vacuum"/></svg></span>吸尘器<b>1</b></button>
+  </footer>
+  <canvas id="effects" aria-hidden="true"></canvas>
+  <dialog id="dialog" aria-labelledby="dialog-title">
+   <h1 id="dialog-title"></h1>
+   <p id="dialog-text"></p>
+   <div id="dialog-art" aria-hidden="true"></div>
+   <div id="dialog-actions"></div>
+   <div id="revive"></div>
+  </dialog>
+ </main>
+</body>
+</html>
