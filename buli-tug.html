@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+  <link rel="stylesheet" href="island-revive.css">
+  <script src="game-art.js?v=buli-20261019" defer></script><script src="island-revive.js"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f5ecdf"><link rel="icon" href="data:,"><title>猫条拔河 · 小房子</title><link rel="stylesheet" href="buli-tug.css">  <link rel="stylesheet" href="mobile-layout.css">
+<link rel="stylesheet" href="mobile-screen.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-late.css?v=20261013"></head>
+<body data-game-art="33"><main class="app">
+<header><a href="index.html">‹ 回小屋</a><span>小房子的抢吃现场</span><div class="header-actions"><button id="teach" type="button">试试怎么玩</button><button id="sound" type="button" aria-pressed="false">音效：开</button></div></header>
+<div class="title"><div><p class="eyebrow">BULI'S SNACK CLUB</p><h1>猫条拔河<span>最后一口也不让</span></h1></div><div class="record"><small>最快抢到</small><strong id="best">—</strong></div></div>
+<p class="objective">把猫条拉到 <b>← 卟哩这边</b> 就赢。对手猛拉时松手，累了就抢回来！</p>
+<nav id="rounds" aria-label="选择对手"></nav>
+<section class="arena" aria-label="猫条拔河场景">
+<div class="arena-top"><span><i></i> 卟哩 <small>← 拉回左边</small></span><span><small>右边是对手 →</small> <b id="rival">奶糖</b></span></div>
+<div class="tug-track" role="progressbar" aria-label="猫条位置，向左到卟哩一侧获胜" aria-valuemin="-100" aria-valuemax="100" aria-valuenow="0" id="track"><div class="goal left">吃到啦</div><div class="goal right">被抢走</div><div id="marker">猫条</div><i></i></div>
+<div id="coach" class="coach" data-kind="neutral"><b id="coach-title">把猫条拉回卟哩这边</b><small id="coach-tip">先试一次就懂了</small></div>
+<canvas id="scene" width="640" height="420" aria-label="两只猫站着争抢一根猫条，按住下面的按钮发力。" tabindex="0"></canvas>
+<div class="scene-footer"><span id="round-title">第一次抢猫条</span><span id="time">0.0 秒</span><button id="pause" type="button" disabled aria-label="暂停游戏">Ⅱ</button></div>
+<div id="panel" class="panel"><div class="panel-card"><span class="panel-tag" id="panel-tag">01 · 奶糖</span><h2 id="panel-title">帮卟哩抢到猫条</h2><p id="panel-copy">按住拉猫条，松手恢复体力。<br>它猛拉时松手，它喘气时再拉！</p><button id="action" class="primary" type="button">开始抢猫条 →</button><button id="retry" type="button" hidden>再试这只猫</button></div></div>
+</section>
+<section class="controls" aria-label="发力和体力">
+<div id="cue" class="cue" data-kind="neutral"><div><span id="cue-dot">●</span><strong id="cue-title">准备好抢猫条了吗？</strong></div><p id="cue-tip">按住发力 · 松手恢复</p></div>
+<div class="energy-row"><label for="energy">卟哩的体力 <b id="energy-label">100%</b></label><span id="effort">松手就能恢复</span></div><progress id="energy" value="100" max="100">100%</progress>
+<div class="counter-window" id="counter-window" hidden><span id="counter-label">抢拉机会</span><i><b id="counter-fill"></b></i></div>
+<button id="pull" class="pull" type="button" disabled aria-label="按住发力，松手恢复体力"><b id="pull-title">按住，拉猫条</b><span id="pull-tip">松手就喘口气</span></button>
+<div class="combo-line"><span id="combo">连续抢拉 0 次</span><span id="guide-label">抓准机会，比一直按更有劲</span></div>
+<p class="round-hint" id="round-hint">红色「猛拉」时松手，绿色「喘气」时按住。</p>
+</section>
+<footer><span>手机按住按钮 · 电脑按住空格 · P 暂停</span><details><summary>怎么玩 / 小屋纪录</summary><p>把上面的猫条拉到最左边就赢，最右边则被对手抢走。按住会耗体力，松手会恢复，并蹲稳减少后退。体力用光会打滑，短暂无法发力。</p><p>它猛拉时松手；它开始喘气时，趁绿色机会条还在按下，会一把抢回更多猫条。连续抓准会连击，拉得更远；错过一次机会会断掉连击。黄色只是蓄力，后面的对手会假动作。单局最多 60 秒。</p><p>第一次先亲手试三步，练习不会输，也不算入最快时间。随时可在准备或暂停时点「试试怎么玩」重练。赢下比赛解锁下一只猫，纪录保存在当前浏览器，旧纪录保留。</p><p>玩法调研：<a href="https://github.com/SaraM89/tug-of-war" target="_blank" rel="noopener">HTML 拔河</a>、<a href="https://github.com/meIIow/tug-of-war" target="_blank" rel="noopener">在线拔河</a>。这里的单机机制与场景独立实现。</p></details><p id="storage-note" hidden>此浏览器无法保存纪录，游戏仍可正常玩。</p></footer>
+</main><script src="buli-tug.js"></script><script src="buli-tug-ui.js"></script></body></html>

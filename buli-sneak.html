@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <link rel="stylesheet" href="island-revive.css">
+  <script src="game-art.js?v=buli-20261019" defer></script><script src="island-revive.js"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f4eee2"><link rel="icon" href="data:,"><title>卟哩偷吃大作战 · 小房子</title><link rel="stylesheet" href="buli-sneak.css"><script src="buli-sneak.js" defer></script><script src="buli-sneak-ui.js" defer></script>  <link rel="stylesheet" href="mobile-layout.css">
+<link rel="stylesheet" href="mobile-screen.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="touch-joystick.css?v=floating-20261023"><script src="touch-joystick.js?v=floating-20261023"></script><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-late.css?v=20261013"></head>
+<body data-game-art="30"><main class="sneak-app">
+<header><a href="index.html">‹ 回小屋</a><span>小猫的秘密计划</span><button id="map" class="quiet">关卡地图</button></header>
+<div class="intro"><div><p class="eyebrow">A LITTLE PAW, A LITTLE MISCHIEF</p><h1>卟哩偷吃<span>大作战</span></h1><p>家家一回头，小猫就装睡。</p></div><div class="chapter"><strong id="level-number">01</strong><small>/ 12 关</small></div></div>
+<section class="game-card" aria-label="偷吃游戏">
+<div class="scene-head"><div><span id="room">厨房</span><strong id="snack">鱼肉小饼</strong></div><div class="time"><span>剩余</span><strong id="seconds">34</strong><small>秒</small></div><button id="pause" class="pause" disabled aria-label="暂停游戏">Ⅱ</button></div>
+<div id="watch-status" class="watch-status away" role="status" aria-live="polite">家家背对着 · 可以前进</div>
+<div class="scene-shell"><canvas id="scene" width="432" height="480" aria-label="家家在家具后方，卟哩在家具靠观众的一侧悄悄靠近零食" tabindex="0"></canvas>
+<section id="overlay" class="overlay" aria-label="游戏操作与结果"><span id="result-tag">偷偷出发</span><h2 id="result-title">零食就在那边</h2><p id="result-body">向右滑动下方摇杆前进；黄色提醒出现，快松手装睡。</p><div id="stars" class="stars" hidden></div><button id="main-action" class="primary">开始偷吃 →</button><button id="secondary-action" class="quiet" hidden>再试一次</button></section>
+</div>
+<div class="meters"><div class="meter-label"><span>离零食越来越近</span><strong id="distance">0%</strong></div><div class="progress-track"><span id="progress-fill"></span></div><div class="meter-label attention"><span id="attention-label">回头后，被看到移动就立即失败</span><strong id="suspicion-label">安全</strong></div></div>
+<div class="touch-pad"><button id="joystick" type="button" class="touch-joystick" aria-label="移动摇杆：按住并滑动"><span class="touch-arrows" aria-hidden="true">→</span><span id="joystick-thumb" class="touch-thumb" aria-hidden="true"></span></button><span class="touch-hint">向右滑前进 · 松手装睡</span></div><button hidden id="move" class="move" disabled aria-pressed="false" aria-label="按住前进，松手装睡">按住，偷偷前进 <span>松手就装睡</span></button>
+<p class="key-note">手机向右滑摇杆 · 电脑按住空格 / 右方向键</p><p id="route-note" class="route-note">第三关开始注意响木板</p>
+</section>
+<footer><div><i class="dot green"></i><span>背对：向右滑</span><i class="dot yellow"></i><span>转身：快松手</span><i class="dot red"></i><span>正看：别动</span></div><p>黄色预警就松手，回头后被看到移动立即失败。停在哪都能装睡；绿圈内家具能挡住家家的视线。</p><p id="storage-note" hidden>浏览器暂时无法保存，仍然可以正常玩。</p></footer>
+</main><dialog id="map-dialog" aria-labelledby="map-title"><div class="map-head"><div><p class="eyebrow">小猫的偷吃路线</p><h2 id="map-title">三个房间，十二次计划</h2></div><button id="close-map" aria-label="关闭关卡地图">✕</button></div><div id="level-list" class="level-list"></div></dialog></body></html>

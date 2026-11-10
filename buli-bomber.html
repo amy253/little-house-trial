@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f5f0e6"><title>卟哩炸弹猫 · 小屋游戏</title>
+<link rel="stylesheet" href="island-revive.css"><script src="game-art.js?v=buli-20261019" defer></script><script src="island-revive.js"></script><link rel="stylesheet" href="mobile-layout.css"><link rel="stylesheet" href="mobile-screen.css"><link rel="stylesheet" href="buli-bomber.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-late.css?v=20261013"><link rel="stylesheet" href="touch-joystick.css?v=floating-20261023"><script src="touch-joystick.js?v=floating-20261023"></script></head>
+<body data-game-art="36"><main class="bomber-app">
+ <header class="topbar"><a href="index.html">← 回小屋</a><h1>卟哩炸弹猫</h1></header>
+ <section class="game-card" aria-label="炸弹猫游戏">
+  <div class="level-bar"><label><span>最高分 <b id="best">0</b></span> <select id="level" aria-label="选择关卡"><option value="0">01 · 小院初试</option><option value="1">02 · 箱子小巷</option><option value="2">03 · 花园转角</option><option value="3">04 · 追逐仓库</option><option value="4">05 · 猫粮迷宫</option><option value="5">06 · 小屋大作战</option></select></label></div>
+  <div class="hud"><span>得分 <b id="score">0</b></span><span>敌人 <b id="enemies">1</b></span><span>可放 <b id="capacity">1 / 1</b></span><span>范围 <b id="range">1</b> 格</span></div>
+  <div class="scene-wrap"><canvas id="scene" width="484" height="484" tabindex="0" role="application" aria-label="卟哩炸弹猫棋盘。方向键或滑动摇杆移动，空格放炸弹。爆炸沿十字延伸，墙会挡火。"></canvas>
+   <div id="panel" class="overlay" role="dialog" aria-modal="true" aria-labelledby="panel-title"><section id="panel-card" class="panel-card"><span class="panel-paw" aria-hidden="true">🐾</span><h2 id="panel-title">先留一条退路</h2><p id="panel-copy">放弹后有2秒逃开。绕到拐角躲火，炸箱子捡道具，消灭敌人再进右下角出口。</p><button id="action" class="primary">开始炸弹猫 →</button></section></div>
+  </div>
+  <div class="controls" aria-label="触控操作"><div class="stick-control"><button id="joystick" class="joystick" aria-label="移动摇杆：按住并滑动，松手停止"><span class="stick-arrows" aria-hidden="true">✥</span><span id="joystick-thumb" class="joystick-thumb" aria-hidden="true"></span></button><span class="control-hint">按住滑动 · 松手停</span></div><button id="bomb" class="bomb-button" aria-label="放炸弹">●<strong>放炸弹</strong><small>放完赶紧躲</small></button></div>
+  <p id="status" class="status" role="status" aria-live="polite">先开始，再炸开箱子。开局留有拐角退路。</p>
+ </section>
+ <nav class="bottom-tools" aria-label="游戏操作"><button id="restart">↻ 重来本关</button><button id="pause" disabled>Ⅱ 暂停</button></nav>
+ <p class="footnote">按住画面任意空白处，向想走的方向拖动，松手停止，另一只手点“放炸弹”；电脑用方向键 / WASD，空格放弹，P暂停。<br>每颗炸弹2秒后爆炸，十字火焰也会伤到卟哩；墙挡火、木箱被炸掉并挡住本次火焰。放弹前先看退路。<br>“＋”道具增加同时可放炸弹，上限3颗；“↔”扩大范围，上限4格。炸弹被火焰击中会立刻连爆。<br>右下角带爪印的箱子藏着出口，消灭所有敌人才能进入。后3关敌人会靠近追赶。<br>失败后每局可去比邻岛找家家说话复活2次；保留已炸箱子、消灭的敌人、道具与得分，返回起点并清除当前炸弹和火焰，明确继续后获得2秒护盾。</p>
+ <p id="storage-note" class="storage-note">关卡和最高分保存在当前浏览器</p>
+</main><script src="buli-bomber.js"></script><script src="buli-bomber-ui.js"></script></body></html>

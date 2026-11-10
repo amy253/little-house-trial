@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <link rel="stylesheet" href="island-revive.css">
+  <script src="game-art.js?v=buli-20261019" defer></script><script src="island-revive.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>家家钓鱼日记</title>
+  <link rel="stylesheet" href="bounce-jiajia.css">
+  <link rel="stylesheet" href="jiajia-fishing.css">
+  <script defer src="jiajia-fishing.js"></script>
+  <script defer src="jiajia-fishing-scene.js"></script>
+  <script defer src="jiajia-fishing-ui.js"></script>
+  <link rel="stylesheet" href="mobile-layout.css">
+<link rel="stylesheet" href="mobile-screen.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-mid.css?v=20261013"></head>
+<body data-game-art="22">
+<main class="bounce-shell fishing-shell">
+  <header class="bounce-top"><a href="index.html">← 回小屋</a><span>LAKE DIARY</span><button id="pause" type="button">Ⅱ 暂停</button></header>
+  <section class="title-row"><div><span class="eyebrow">家家 × 卟哩 · 湖边的慢时光</span><h1>家家钓鱼日记</h1></div><div class="best-pill">小鱼图鉴<br><b id="discovered">0 / 12</b></div></section>
+  <p class="intro">换个钓点，遇见新鱼。收一篓小惊喜，留一条给卟哩。</p>
+  <div class="lake-layout"><section class="game-card">
+    <div class="hud"><span>金币 <b id="coins">0</b></span><span>鱼竿 <b id="rod-level">1</b> 级</span><span>已钓 <b id="total-caught">0</b> 条</span></div>
+    <div class="canvas-wrap lake-wrap">
+      <canvas id="fishing" width="432" height="400" aria-label="家家和卟哩在湖边钓鱼；使用下方按钮抛竿、提竿和收线" tabindex="0"></canvas>
+      <div class="lake-badge" id="phase-label">湖边 · 微风</div>
+      <div id="catch-card" class="catch-card" hidden><span id="catch-kicker">第一次遇见</span><h2 id="catch-title"></h2><p id="catch-description"></p></div>
+      <div id="paused-card" class="paused-card" hidden><span>☾</span><h2>小湖休息一下</h2><p>鱼儿也在等你，准备好了再继续。</p><button id="resume" type="button">继续钓鱼</button></div>
+    </div>
+    <div class="reel-meters" id="reel-meters" hidden>
+      <p class="spot-summary" id="fight-habit"></p>
+      <div class="meter-heading"><span>收线进度</span><b id="reel-percent">0%</b></div>
+      <div class="progress-track" role="progressbar" aria-label="收线进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="reel-progress"><span></span></div>
+      <div class="meter-heading tension-heading"><span>力度</span><b id="tension-label">保持在绿色区域</b></div>
+      <div class="tension-track" id="tension-track"><span class="safe-zone" id="safe-zone">保持这里</span><i id="tension-marker"></i></div>
+      <div class="tension-scale"><span>太松 · 按住</span><span>太紧 · 松手</span></div>
+    </div>
+    <p class="fishing-hint" id="hint" aria-live="polite">第一步：点击「抛竿」，等浮漂动起来。</p>
+    <div id="catch-choices" class="catch-choices" hidden><button id="catch-sell" type="button">卖掉<small id="catch-price"></small></button><button id="catch-feed" type="button">喂卟哩<small>一起吃小鱼</small></button><button id="catch-keep" type="button">留在鱼篓<small>之后再决定</small></button><button id="catch-release" type="button">放生<small>返金币 · 攒礼物</small></button></div>
+    <button class="fishing-action" id="action" type="button"><span id="action-icon" aria-hidden="true">⌁</span><span id="action-text">抛竿</span></button>
+    <div class="fishing-tools"><button id="bag-button" type="button">▱ 鱼篓 <b id="bag-count">0</b></button><button id="spot-button" type="button">⌖ 换钓点</button><button id="upgrade-button" type="button">⌁ 商店</button><button id="catalog-button" type="button">▤ 图鉴</button></div>
+    <p class="spot-summary">现在在 <b id="spot-summary">浅滩码头</b> · 不同钓点，更容易遇见不同鱼</p>
+  </section>
+  <aside class="lake-companion"><div class="companion-heading"><span>湖边小伙伴</span><small>一条小鱼，一点亲近</small></div>
+  <button id="pet-button" class="pet-strip" type="button"><i class="buli-portrait" aria-hidden="true"></i><span><strong id="pet-title">卟哩 · 湖边小伙伴</strong><small id="pet-summary">喂一条小鱼，和卟哩更亲近一点。</small><i class="bond-track"><i id="pet-progress"></i></i></span><b>喂鱼 / 成长 ›</b></button>
+  <p id="bond-next" class="bond-next">亲密度 20 · 下一份礼物 20 金币</p>
+  <p class="companion-note">卟哩会在岸边小跳、打盹、伸懒腰。越亲近，越爱跑来陪你。</p>
+  <section class="lake-wish" aria-label="湖边小心愿"><span>湖边小心愿</span><h2 id="wish-title">收一篓小惊喜</h2><p id="wish-progress">钓上 3 条鱼 · 0 / 3</p><div class="wish-track" aria-hidden="true"><i id="wish-meter"></i></div><button id="journey-button" type="button">心愿 / 瓶中信 ›</button><small id="bottle-summary">漂流瓶里，也许有一封写给你的信。</small></section>
+  <details class="lake-guide"><summary>第一次钓鱼？看这三步</summary><ol><li><b>抛竿</b><span>点击按钮，等浮漂动起来。</span></li><li><b>提竿</b><span>看到「咬钩了」就点击提竿。</span></li><li><b>收线</b><span>按住收线，太紧就松手。绿色最快，黄色也有进度。</span></li></ol></details>
+  </aside></div>
+  <p id="bait-summary" class="save-note">本竿使用普通饵 · 免费无限</p>
+  <p class="save-note" id="save-note">进度自动保存在这台设备 · 按住按钮或空格收线</p>
+  <p class="lake-footnote">不赶时间，下一竿也许就是新朋友。</p>
+</main>
+<div id="panel" class="fishing-panel" hidden role="dialog" aria-modal="true" aria-labelledby="panel-title">
+  <section class="fishing-panel-card"><header><h2 id="panel-title"></h2><button id="panel-close" type="button" aria-label="关闭面板">×</button></header><div id="panel-content"></div></section>
+</div>
+<div id="feedback-toast" class="feedback-toast" role="status" hidden></div>
+</body>
+</html>

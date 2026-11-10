@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+  <link rel="stylesheet" href="island-revive.css">
+  <script src="game-art.js?v=buli-20261019" defer></script><script src="island-revive.js"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>舞台跑酷 · 小房子的游乐日记</title><link rel="stylesheet" href="stage-arcade.css?v=35"><link rel="stylesheet" href="leaderboard.css"><script defer src="stage-runner.js?v=35"></script><script defer src="leaderboard-ui.js"></script><script defer src="stage-runner-ui.js?v=35"></script>  <link rel="stylesheet" href="mobile-layout.css">
+<link rel="stylesheet" href="mobile-screen.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-early.css?v=20261013"></head>
+<body data-game-art="07"><main class="arcade-shell">
+  <header class="arcade-top"><a href="index.html">← 回小屋</a><span>JIA JIA · LITTLE GAMES</span></header>
+  <span class="eyebrow">RUN TO THE LIGHTS</span><h1 class="arcade-title">舞台跑酷</h1>
+  <p class="arcade-intro">无限跑向舞台：左右滑换道，上滑跳、下滑蹲。卟哩是额外奖励，跑得越远，排名越高。</p>
+  <section class="arcade-panel" aria-label="舞台跑酷游戏">
+    <div class="arcade-meta"><strong>无限跑酷</strong><div class="arcade-progress">已跑 <strong id="progress">0</strong> 米 · 最佳 <strong id="best">0</strong> 米</div></div>
+    <div class="arcade-frame">
+      <canvas id="stage" width="432" height="600" aria-label="舞台跑酷：左右滑动换跑道，向上滑跳过线缆，向下滑蹲过横杆" tabindex="0"></canvas>
+      <div class="runner-hud"><span><img src="merge-tier-1.png" alt="">卟哩 <b id="buli-count">0/5</b></span><span>道具 <b id="power-status">暂无</b></span></div>
+      <div id="tutorial" class="runner-tutorial" hidden>
+        <div class="runner-tutorial-card">
+          <span class="runner-tutorial-kicker">跑前看一眼</span><h2>遇到障碍这样过</h2>
+          <div class="runner-guide-grid">
+            <div><svg class="guide-preview" viewBox="0 0 80 64" role="img" aria-label="赛道里的音箱障碍"><rect x="16" y="6" width="48" height="53" rx="7" fill="#3f5350"/><circle cx="40" cy="35" r="13" fill="#b8cbb9"/><circle cx="40" cy="35" r="7" fill="#698a78"/></svg><b>音箱</b><small>← → 左右换道</small></div>
+            <div><svg class="guide-preview" viewBox="0 0 80 64" role="img" aria-label="赛道里的线缆障碍"><path d="M8 54 Q40 19 72 54" fill="none" stroke="#d58e91" stroke-width="8" stroke-linecap="round"/><rect x="7" y="53" width="9" height="9" rx="2" fill="#b7727d"/><rect x="64" y="53" width="9" height="9" rx="2" fill="#b7727d"/></svg><b>线缆</b><small>↑ 上滑跳过</small></div>
+            <div><svg class="guide-preview" viewBox="0 0 80 64" role="img" aria-label="赛道里的横杆障碍"><rect x="13" y="12" width="6" height="49" fill="#b77e8d"/><rect x="61" y="12" width="6" height="49" fill="#b77e8d"/><rect x="10" y="7" width="60" height="12" rx="3" fill="#f8d692"/></svg><b>横杆</b><small>↓ 下滑蹲过</small></div>
+          </div>
+          <div class="runner-guide-prize"><img src="merge-tier-1.png" alt="卟哩"><b>× 5</b><span>随机抽一个道具</span></div>
+          <div class="runner-guide-timer" aria-hidden="true"><i></i></div>
+        </div>
+      </div>
+      <div id="overlay" class="arcade-overlay"><div class="result-card"><img src="jiajia-bonnet-20261021.webp" alt="Q版家家"><h2 id="result-title">陪家家跑向舞台</h2><p id="result-text">左右滑换道，上滑跳、下滑蹲。</p><div class="result-actions"><button id="action">开始跑酷</button><button id="island-revive" class="island-revive" hidden>去云外比邻岛找家家说说话，复活</button><a class="secondary" href="index.html">回小屋</a></div><p id="revive-status" class="revive-status" hidden></p></div></div>
+    </div>
+    <div class="arcade-control"><button id="pause" disabled>暂停</button></div>
+    <p class="arcade-tip">在游戏画面滑动：← → 换道 · ↑ 跳跃 · ↓ 下蹲。电脑可用方向键。</p>
+  </section>
+  <section class="leaderboard"><h2>舞台跑酷排行榜 <small>前 10 名</small></h2><p id="leaderboard-status">正在读取排行榜…</p><ol id="leaderboard-list"></ol><form id="leaderboard-form" hidden><label for="leaderboard-name">上榜昵称</label><input id="leaderboard-name" maxlength="12" placeholder="1～12 个字" autocomplete="nickname"><button id="leaderboard-submit" type="submit" disabled>上传我的最佳米数</button></form></section>
+</main></body></html>

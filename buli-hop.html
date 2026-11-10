@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <link rel="stylesheet" href="island-revive.css">
+  <script src="game-art.js?v=buli-20261019" defer></script><script src="island-revive.js"></script>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+ <meta name="theme-color" content="#d6dbdf"><title>卟哩跳一跳 · 小房子</title>
+ <link rel="icon" href="data:,"><link rel="stylesheet" href="buli-hop.css">
+  <link rel="stylesheet" href="mobile-layout.css">
+<link rel="stylesheet" href="mobile-screen.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-mid.css?v=20261013"></head>
+<body data-game-art="23">
+ <main class="hop-app">
+  <header class="hop-header"><a href="index.html" aria-label="返回小屋">‹ 小屋</a><h1>卟哩跳一跳</h1><button id="sound" type="button" aria-pressed="false" aria-label="关闭声音">声音开</button></header>
+  <section class="hop-stage" id="stage" aria-label="跳一跳游戏场景">
+   <canvas id="scene" tabindex="0" role="button" aria-label="按住蓄力，松手跳向下一个平台。也可按住空格键。" aria-describedby="play-help"></canvas>
+   <div class="hop-score"><span>本局</span><strong id="score">0</strong><small>最高 <b id="best">0</b></small></div>
+   <button class="pause" id="pause" type="button" aria-label="暂停游戏">Ⅱ</button>
+   <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+   <p class="first-hint" id="first-hint"><b>按住蓄力 · 松手起跳</b><span>按得越久，跳得越远</span></p>
+   <section class="overlay" id="overlay" hidden aria-label="游戏结果"><div class="result"><span id="result-label">这次跳了</span><strong id="result-score">0</strong><h2 id="result-title">再跳一次？</h2><p id="result-text">远一点，近一点，慢慢找到手感。</p><button id="resume" hidden type="button">继续跳</button><button id="restart" type="button">再来一局</button></div></section>
+   <div id="render-error" class="render-error" hidden role="alert">3D 场景加载失败，请刷新页面或使用支持 WebGL 的浏览器。</div>
+  </section>
+  <footer class="hop-footer"><p id="play-help">手机按住画面；电脑按住鼠标或空格。落在中心，连续加分。</p><details><summary>怎么玩</summary><div class="rules"><p><b>跳到下一块 +1</b>，没跳出原平台不加分。掉下去，这一局结束。</p><p><b>连续落在中心：+2、+4、+6……</b>，最高每次 +32；落到边上会重新开始累积。</p><p><b>特殊平台，停留 2 秒：</b>井盖 +5、魔方 +10、小店 +15、唱片 +30。提前蓄力就会取消这次等待奖励。</p><p class="credit">玩法参考 <a href="https://github.com/shenmaxg/web-jump" target="_blank" rel="noopener">web-jump（MIT）</a>。卟哩来自照片参考生成的透明角色，猫叫为本地合成音效。</p></div></details><span id="audio-error" hidden>声音加载失败，仍可继续跳。</span></footer>
+ </main>
+ <script src="buli-hop.js"></script><script src="buli-hop-input.js"></script><script src="buli-hop-sound.js"></script><script type="module" src="buli-hop-ui.js"></script>
+</body>
+</html>

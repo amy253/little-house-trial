@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>家家小矿场 · 小房子的游乐日记</title>
+  <link rel="stylesheet" href="mine-garden.css">
+  <script src="game-art.js?v=buli-20261019" defer></script><script type="module" src="mine-garden.js"></script>
+  <link rel="stylesheet" href="mobile-layout.css">
+<link rel="stylesheet" href="mobile-screen.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-early.css?v=20261013"><link rel="stylesheet" href="touch-joystick.css?v=floating-20261023"><script src="touch-joystick.js?v=floating-20261023"></script></head>
+<body data-game-art="08">
+  <main class="mine-shell">
+    <header><a href="index.html">← 回小屋</a><span>JIA JIA · LITTLE GAMES</span></header>
+    <div class="mine-heading"><div><small>ONE LITTLE MINE, ENDLESS DAYS</small><h1>家家小矿场</h1></div></div>
+    <p class="intro">目标很简单：把矿石卖成金币，再升级背包、镐子、机器和帮手，让矿场越赚越快。</p>
+    <div class="game-goal"><b>你要一直循环这 5 步</b><span>⛏️采矿 → ⚙️加工 → 🚜装货 → 🚢卖钱 → ⬆️升级</span></div>
+    <div class="map-wrap"><canvas id="mine-map" width="432" height="720" aria-label="斜俯视矿场；按住画面向想走的方向拖动，靠近矿石自动采集"></canvas><div class="game-cash">💵 <strong id="cash">0</strong></div><div class="game-bag">🎒 <b id="bag">0 / 12</b></div><div id="arrow" class="map-arrow" aria-hidden="true">↗</div><div id="ore-pop" class="ore-pop" aria-hidden="true">矿石 +1</div><div id="task-chip" class="task-chip">① 去白色矿石旁</div><button id="joystick" class="touch-joystick" aria-label="在画面按住拖动走路"><i id="stick" class="touch-thumb"></i></button><div id="intro-card" class="intro-card"><div class="intro-inner"><span>⛏️</span><h2>你要做什么？</h2><p>先按住画面，朝白色矿石方向拖动。走近矿石后，家家会自动挥镐。</p><ol class="mine-loop"><li>⛏️<b>采矿</b></li><li>⚙️<b>加工</b></li><li>🚜<b>装货</b></li><li>🚢<b>卖钱</b></li><li>⬆️<b>升级</b></li></ol><button id="start" type="button">知道了，开始采矿</button></div></div></div><div id="reset-card" class="reset-card" hidden><div><h2>重新开始？</h2><p>矿场的钱、升级和货物都会清空。</p><button id="reset-cancel" type="button">先不重置</button><button id="reset-confirm" type="button">确认重置</button></div></div>
+    <section class="mine-hud" aria-label="矿场状态"><span>⚙️ 加工中 <b id="raw">0</b></span><span>📦 成品 <b id="goods">0</b></span><span>🚜 车上 <b id="cargo">0 / 12</b></span></section>
+    <p id="guide" class="guide" role="status">第1步｜先去白色矿石旁<br>按住画面，朝白色矿石方向拖动。</p>
+    <div class="actions"><button id="vehicle" type="button">步行中 · 到叉车旁上车</button><button id="help" class="secondary" type="button">怎么玩</button><button id="reset" class="secondary" type="button">重开</button></div>
+    <section class="upgrades"><h2>矿场升级</h2><div class="upgrade-grid"><button id="bag-upgrade" type="button"></button><button id="pick-upgrade" type="button"></button><button id="factory-upgrade" type="button"></button><button id="helper-upgrade" type="button"></button></div><p>一张地图一直玩，设施逐渐变快。游客进度保存在当前浏览器。</p></section>
+    <p class="controls">手机：按住地图任意空地，向移动方向拖动。电脑：WASD / 方向键。靠近叉车可点“上车”，再点可下车。</p>
+  </main>
+</body>
+</html>

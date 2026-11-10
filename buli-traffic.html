@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#f7edda"><title>卟哩堵车啦 · 小屋游戏</title><link rel="stylesheet" href="buli-traffic.css"><script src="game-art.js?v=buli-20261019" defer></script><script src="buli-traffic.js" defer></script><script src="buli-traffic-ui.js" defer></script>  <link rel="stylesheet" href="mobile-layout.css">
+<link rel="stylesheet" href="mobile-screen.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="touch-joystick.css?v=floating-20261023"><script src="touch-joystick.js?v=floating-20261023"></script><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-late.css?v=20261013"></head>
+<body data-game-art="28">
+<main class="traffic-app">
+  <header class="topbar"><a class="home" href="index.html" aria-label="回到小屋游戏">‹ 小屋</a><span class="eyebrow">小屋的慢慢玩系列</span><button id="levels-button" class="subtle" aria-haspopup="dialog">关卡地图</button></header>
+  <section class="intro"><div><span class="tiny-tag">一场小小的出行</span><h1>卟哩堵车啦<span aria-hidden="true"> !</span></h1><p>挪一挪小车，送卟哩去野餐。</p></div><img class="hero-cat" src="buli-head-snack.png" alt="灰棕虎斑、大黄眼的卟哩" draggable="false"></section>
+  <section class="game-card" aria-label="停车场解谜">
+    <div class="level-header"><div><span id="chapter" class="chapter">暖身小路 · 01 / 24</span><h2 id="level-title">出发去野餐</h2></div><div class="move-counter"><strong id="moves">0</strong><span>次滑动</span></div></div>
+    <div class="lot-scene">
+      <div class="scenery" aria-hidden="true"><span class="sun"></span><span class="hill one"></span><span class="hill two"></span><span class="tree">♣</span><span class="house">⌂</span><span class="sign">野餐小路 →</span></div>
+      <div class="parking-shell"><div id="board" class="board" role="group" aria-label="六乘六停车场，卟哩在第三行，出口在右边"><div class="parking-mark" aria-hidden="true">P</div></div><div class="exit-road" aria-hidden="true"><span>→</span></div><div class="exit-label">出口 →</div></div>
+      <div class="scene-footer"><span>☘ 小车也想慢慢走</span><span id="par">三星目标 2 次</span></div>
+    </div>
+    <p id="instruction" class="instruction">先把薄荷色的 A 车往下挪，再把卟哩的小车拖到右侧出口。</p>
+    <div class="drive-panel"><div><strong id="selected-name">卟哩的小车</strong><span id="axis-label">只能左右滑动</span></div><div class="direction-pad touch-pad" aria-label="移动选中的车"><button id="move-left" aria-label="向左移动一格">←</button><button id="move-up" aria-label="向上移动一格">↑</button><button id="move-down" aria-label="向下移动一格">↓</button><button id="move-right" aria-label="向右移动一格">→</button><button id="joystick" type="button" class="touch-joystick" aria-label="移动摇杆：按住并滑动"><span class="touch-arrows" aria-hidden="true">✥</span><span id="joystick-thumb" class="touch-thumb" aria-hidden="true"></span></button><span class="touch-hint">滑一下挪一格 · 先选车</span></div></div>
+    <div class="toolbar"><button id="undo">↶ 撤销</button><button id="reset">↻ 重来</button><button id="hint">✦ 看下一步</button></div>
+    <p id="status" class="status" role="status" aria-live="polite">拖动小车，或点选后用方向键。一次拖动算一次。</p>
+    <section id="win-panel" class="win-panel" aria-label="通关结果" hidden><div class="win-stars" id="win-stars" aria-label="获得星星"></div><h2>出发啦，野餐见！</h2><p id="win-summary"></p><button id="next" class="primary">下一段小路 →</button><button id="replay" class="subtle">再走一次</button></section>
+  </section>
+  <footer class="help">没有倒计时，慢慢想就好。<span>横车 ↔ · 竖车 ↕ · 点击选车后可用方向键</span></footer>
+</main>
+<dialog id="levels-dialog" aria-labelledby="map-title"><div class="dialog-header"><div><span class="tiny-tag">一格一格，去远一点</span><h2 id="map-title">卟哩的出行地图</h2></div><button id="close-levels" aria-label="关闭关卡地图">✕</button></div><p class="map-note">完成一关，就能前往下一段小路。星星记录你的最好成绩。</p><div id="level-list" class="level-list"></div></dialog>
+</body></html>

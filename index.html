@@ -1,20 +1,328 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#303858">
-<title>小房子游乐场 · 试玩</title>
-<link rel="icon" href="vendor/house.svg" type="image/svg+xml">
-<style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;padding:24px;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 36%,#58669a,#303858 70%);color:#f4f6ff;font:16px/1.6 system-ui,sans-serif}main{width:min(100%,400px);padding:30px 22px;text-align:center;border:1px solid #9da8ce70;border-radius:20px;background:#3c4772;box-shadow:0 6px 20px #22294655}h1{font-size:28px;line-height:1.3;margin:0 0 12px}p{margin:0 0 20px;color:#e0e6f7}a{display:inline-grid;place-items:center;min-height:48px;padding:0 24px;border-radius:12px;background:#f8d776;color:#303044;text-decoration:none;font-weight:750}a:focus-visible{outline:3px solid white;outline-offset:4px}
-</style>
-</head>
-<body>
-<main>
- <h1>家家球球消气</h1>
- <p>转动立体积木，派出炮车消掉同色方块。</p>
- <a href="jiajia-voxel.html?v=impact-20261107">开始试玩</a>
+  <link rel="stylesheet" href="island-revive.css">
+  <script src="game-art.js?v=buli-20261019" defer></script><script src="island-revive.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4eee5">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23f4eee5'/%3E%3Cpath d='M10 30 32 12 54 30v24H10z' fill='%23597667'/%3E%3Cpath d='M26 54V38h12v16' fill='%23fff8ee'/%3E%3C/svg%3E">
+  <title>小房子游乐场 · 55款小游戏</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="merge.css?v=4">
+  <link rel="stylesheet" href="home.css?v=garden-20261106">
+  <style>
+    .mode-tabs{display:flex;gap:7px;margin:0 0 18px;padding:4px;background:#f1f2eb;border-radius:12px}.mode-tab{flex:1;border:0;border-radius:9px;padding:8px 4px;background:transparent;color:#869086;font-size:11px}.mode-tab.active{background:#fffdf6;color:#557662;box-shadow:0 2px 7px #5a745814}.mode-tab small{display:block;font-size:8px;margin-top:3px;color:#a2a99e}.mode-tab.active small{color:#82a18a}.match3-view{padding:6px 0 4px}.match3-view h3{font-size:21px;letter-spacing:2px;margin:4px 0 8px}.match3-intro{font-size:12px;line-height:1.8;color:#7b857c;margin:0 0 16px}.match3-meta{display:flex;justify-content:space-between;font-size:11px;color:#7f8a7d;background:#f1f2eb;border-radius:9px;padding:9px 11px;margin-bottom:13px}.match3-board{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding:12px;background:#ebe9e1;border-radius:16px}.match3-tile{border:0;border-radius:11px;aspect-ratio:1;background:#fffdf6;box-shadow:0 2px 4px #52635817;font-size:24px;line-height:1;transition:transform .12s,box-shadow .12s}.match3-tile:hover{transform:translateY(-2px)}.match3-tile.selected{box-shadow:0 0 0 3px #7ba58a,0 3px 8px #5263582d;transform:scale(.94);animation:match3-bob .55s ease-in-out infinite alternate}.match3-tile.swapping{transition:transform .19s cubic-bezier(.2,1.4,.4,1);z-index:2}.match3-tile.invalid{animation:match3-shake .24s ease-in-out}.match3-tile.clearing{animation:match3-pop .3s cubic-bezier(.2,.8,.35,1.25) forwards;pointer-events:none}.match3-tile.dropping{animation:match3-drop .42s cubic-bezier(.2,1.25,.45,1) var(--drop-delay) both}.match3-hint{font-size:11px;color:#758375;line-height:1.7;min-height:20px;margin:13px 0}.match3-actions{display:flex;justify-content:flex-end}.match3-actions button{border:0;background:none;color:#758375;font-size:11px;padding:6px}.match3-view[hidden]{display:none}.score-pop{animation:match3-score-pop .3s ease-out}.match3-meta b{display:inline-block}.mode-tab:not(:disabled):active{transform:scale(.97)}@keyframes match3-bob{to{transform:scale(.99) translateY(-3px)}}@keyframes match3-shake{0%,100%{transform:translateX(0)}30%{transform:translateX(-5px)}70%{transform:translateX(5px)}}@keyframes match3-pop{0%{transform:scale(1);opacity:1}55%{transform:scale(1.3) rotate(8deg);opacity:.9}100%{transform:scale(.15) rotate(-10deg);opacity:0}}@keyframes match3-drop{0%{transform:translateY(-35px) scale(.9);opacity:.1}70%{transform:translateY(4px) scale(1.02);opacity:1}100%{transform:translateY(0) scale(1);opacity:1}}@keyframes match3-score-pop{50%{transform:scale(1.35);color:#bc8a42}}@media(prefers-reduced-motion:reduce){.match3-tile,.match3-meta b{animation:none!important;transition:none!important}}
+    .match3-tile{touch-action:none;cursor:grab;user-select:none}
+    .match3-tile.dragging{transition:none;z-index:3;cursor:grabbing;box-shadow:0 5px 16px #52635855}
+    .match3-tile.drag-target{transition:none;z-index:2}
+    .match3-tile.swapping{transition:transform .22s cubic-bezier(.25,.8,.25,1)}
+    .match3-tile.dropping{animation:match3-local-drop .42s cubic-bezier(.2,1.25,.45,1) var(--drop-delay) both}
+    @keyframes match3-local-drop{0%{transform:translateY(var(--drop-from,-35px)) scale(.96);opacity:.2}70%{transform:translateY(4px) scale(1.02);opacity:1}100%{transform:translateY(0) scale(1);opacity:1}}
+    .match3-tile.suggested{box-shadow:0 0 0 3px #e7b66b,0 0 16px #e7b66baa;animation:match3-suggest .8s ease-in-out infinite alternate}
+    @keyframes match3-suggest{to{transform:scale(1.08)}}
+    @media(prefers-reduced-motion:reduce){.match3-tile.suggested{animation:none}}
+    .match3-view{position:relative}
+    .match3-board{position:relative}
+    .match3-tile.clearing{position:relative;z-index:4;animation:match3-clear .62s ease-out forwards}
+    .match3-tile.clearing::before,.match3-tile.clearing::after{content:"";position:absolute;inset:5px;border:2px solid currentColor;border-radius:50%;pointer-events:none;animation:match3-ring .62s ease-out forwards}
+    .match3-tile.clearing::after{animation-delay:.08s}
+    .match3-float-score{position:absolute;z-index:6;color:#aa7739;background:#fff8dc;border:1px solid #e5c283;border-radius:999px;padding:4px 9px;font-size:13px;font-weight:700;pointer-events:none;animation:match3-float .85s ease-out forwards}
+    @keyframes match3-clear{0%{transform:scale(1);opacity:1}25%{transform:scale(1.32);background:#fff2c4;box-shadow:0 0 22px #ffe098}55%{transform:scale(1.12) rotate(12deg);opacity:1}100%{transform:scale(.1) rotate(-28deg);opacity:0}}
+    @keyframes match3-ring{0%{transform:scale(.5);opacity:0}25%{opacity:.85}100%{transform:scale(1.75);opacity:0}}
+    @keyframes match3-float{0%{transform:translate(-50%,0) scale(.65);opacity:0}22%{transform:translate(-50%,-16px) scale(1.2);opacity:1}100%{transform:translate(-50%,-54px) scale(1);opacity:0}}
+    .match3-win{position:absolute;inset:0;z-index:10;display:grid;place-items:center;overflow:hidden;border-radius:18px;background:#f7f2e8dd;backdrop-filter:blur(6px);animation:match3-win-in .35s ease-out}
+    .match3-win[hidden]{display:none}
+    .match3-win-card{position:relative;z-index:2;width:min(88%,320px);padding:34px 24px;text-align:center;background:#fffdf7;border:2px solid #f0dbad;border-radius:24px;box-shadow:0 18px 50px #735b3d33;animation:match3-win-card .7s cubic-bezier(.18,1.5,.38,1) both}
+    .match3-win-star{display:block;font-size:65px;line-height:1;color:#e7af54;text-shadow:0 4px 0 #fff0c5,0 0 22px #f1d18c;animation:match3-win-star 1.4s ease-in-out infinite alternate}
+    .match3-win-card h4{font-size:29px;color:#5c6e59;margin:15px 0 7px}
+    .match3-win-card p{color:#8d8a74;font-size:13px;line-height:1.7;margin:0 0 20px}
+    .match3-win-card button{border:0;border-radius:12px;background:#5c8067;color:white;padding:12px 30px;box-shadow:0 5px 0 #3d624a;font-weight:700}
+    .match3-confetti span{position:absolute;top:-12%;left:var(--x);width:9px;height:16px;background:var(--color);border-radius:2px;animation:match3-confetti var(--duration) linear var(--delay) infinite;opacity:.9}
+    @keyframes match3-win-in{from{opacity:0}to{opacity:1}}
+    @keyframes match3-win-card{from{transform:translateY(60px) scale(.55) rotate(-8deg);opacity:0}70%{transform:translateY(-7px) scale(1.06) rotate(2deg);opacity:1}to{transform:translateY(0) scale(1) rotate(0)}}
+    @keyframes match3-win-star{to{transform:scale(1.12) rotate(10deg)}}
+    @keyframes match3-confetti{to{transform:translate(28px,690px) rotate(720deg)}}
+    @media(prefers-reduced-motion:reduce){.match3-win,.match3-win-card,.match3-win-star,.match3-confetti span,.match3-float-score{animation:none!important}}
+    #sand-guide[hidden],#sand-note[hidden],#home-view[hidden],#flower-view[hidden],#sand-view[hidden],#match3-view[hidden]{display:none}
+    .home-view{padding:15px 2px 8px}.home-view h2{font-size:24px;margin:8px 0}.home-view p{font-size:12px;color:#8a9488;line-height:1.8;margin:0 0 20px}
+    .home-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.home-card{display:flex;flex-direction:column;align-items:flex-start;gap:9px;min-height:148px;text-align:left;text-decoration:none;border:1px solid #e1e7da;border-radius:17px;background:#f3f5ec;color:#52705c;padding:18px;box-shadow:0 5px 12px #62745d13}.home-card:not(.waiting):hover{transform:translateY(-3px);background:#eaf1e7}.home-card .home-icon{font-size:29px;color:#8eaf91}.home-card strong{font-size:15px}.home-card small{font-size:10px;color:#8a9b89}.home-card.waiting{opacity:.55;background:#f3f2ee;color:#93998e}
+    .match3-confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+    .match3-win-actions{display:flex;justify-content:center;gap:10px}.match3-win-actions button{padding:11px 18px}.match3-win-actions button+button{background:#f0f1e9;color:#617766;box-shadow:0 5px 0 #d8dfd3}
+    .match3-win.failed .match3-confetti{display:none}
+    .match3-win.failed .match3-win-card{border-color:#ded7cf}
+    .match3-win.failed .match3-win-star{color:#9b9c9a;text-shadow:none;animation:none!important}
+    .overlay.won{overflow:hidden;background:#fcf6e8e8;animation:match3-win-in .35s ease-out}.overlay.won>div:last-child{position:relative;z-index:2;animation:match3-win-card .7s cubic-bezier(.18,1.5,.38,1) both}.overlay.won #result-icon{display:block;font-size:62px;line-height:1;color:#e7af54;animation:match3-win-star 1.4s ease-in-out infinite alternate}.overlay .secondary{border:0;border-radius:12px;background:#eef0e7;color:#5b7662;padding:12px 18px;margin:10px 0 0 8px}.overlay .secondary[hidden]{display:none}
+    .overlay:not(.won) .match3-confetti{display:none}
+    @media(prefers-reduced-motion:reduce){
+      .match3-tile.swapping{transition:transform .22s cubic-bezier(.25,.8,.25,1)!important}
+      .match3-tile.invalid{animation:match3-shake .24s ease-in-out!important}
+      .match3-tile.clearing{animation:match3-clear .62s ease-out forwards!important}
+      .match3-tile.dropping{animation:match3-local-drop .42s cubic-bezier(.2,1.25,.45,1) var(--drop-delay) both!important}
+      .match3-float-score{animation:match3-float .85s ease-out forwards!important}
+      .match3-win,.overlay.won{animation:match3-win-in .35s ease-out!important}
+      .match3-win-card,.overlay.won>div:last-child{animation:match3-win-card .7s cubic-bezier(.18,1.5,.38,1) both!important}
+      .match3-win-star,.overlay.won #result-icon{animation:match3-win-star 1.4s ease-in-out infinite alternate!important}
+      .match3-confetti span{animation:match3-confetti var(--duration) linear var(--delay) infinite!important}
+    }
+    .stars-view{padding:6px 0 4px}.stars-view[hidden]{display:none}.stars-view h3{font-size:21px;letter-spacing:2px;margin:4px 0 8px}.stars-intro{font-size:12px;line-height:1.8;color:#7b857c;margin:0 0 16px}.stars-field{background:#17253c}.stars-field canvas{touch-action:none;cursor:ew-resize;outline:none}.stars-field canvas:focus-visible{outline:3px solid #91b6d7;outline-offset:-4px}.stars-field .overlay{background:#eaf0f4d9}.stars-result-card{position:relative;z-index:2;background:#fffdf8;border:2px solid #f0dbad;border-radius:23px;padding:28px 20px;box-shadow:0 16px 42px #17253c38}.stars-result-card h4{font-size:25px;margin:8px 0;color:#536c68}.stars-result-card p{max-width:245px}.stars-result-card .secondary{margin-left:7px}.stars-meta{display:flex;justify-content:space-between;margin:0 0 12px;padding:9px 11px;border-radius:9px;background:#f1f2eb;font-size:11px;color:#7f8a7d}.stars-meta b{color:#557562}.stars-controls select{min-width:0;flex:1}.stars-controls #stars-difficulty{flex:0 0 112px}#match3-board .match3-goal-cell{box-shadow:inset 0 0 0 3px #b78124;outline:2px solid #f8d579;outline-offset:-6px}#match3-board .match3-goal-cell::after{content:"清";position:absolute;top:2px;right:2px;display:grid;place-items:center;width:15px;height:15px;border-radius:3px;background:#94601f;color:#fffdf4;box-shadow:0 0 0 1px #fff8cf;font-size:10px;font-weight:750;line-height:1;z-index:2;pointer-events:none}.stars-hint{font-size:11px;color:#758375;line-height:1.7;min-height:20px;margin:12px 0 4px}.stars-field .overlay:not(.won) .match3-confetti{display:none}#stars-result-icon{display:block;font-size:52px;line-height:1;color:#e7af54}
+    @media(max-width:680px){
+      .layout{max-width:none;padding:8px 8px 18px}
+      .game{padding:14px 12px 22px;border-radius:20px}
+      .mode-tabs{gap:3px;margin-bottom:16px;padding:4px}
+      .mode-tab{min-width:0;min-height:52px;padding:6px 2px;font-size:clamp(10px,2.8vw,12px);font-weight:600;line-height:1.2;overflow-wrap:anywhere}
+      .mode-tab small{font-size:9px;margin-top:4px;font-weight:400}
+      .level-row{gap:8px;font-size:12px}
+      .level-row select{min-height:44px;font-size:12px}
+      .match3-intro,.stars-intro,.merge-intro{font-size:13px;line-height:1.7}
+      .match3-hint,.stars-hint,.merge-hint,.hint{font-size:12px}
+      .match3-actions button,.text-button{min-height:44px;font-size:12px}
+      .inventory-header h3{font-size:12px}
+      .queue-column .bucket-button{min-height:88px}
+      .home-card{min-height:132px;padding:14px}
+      .home-card small{font-size:11px;line-height:1.4}
+      .home-view .room-copy p{font-size:12px}
+      .room-copy small{font-size:11px}
+      .room-copy button,.room-copy .island-button{min-height:44px;font-size:12px}
+    }
+  </style>
+  <script defer src="model.js?v=content-20261026"></script>
+  <script defer src="match3.js?v=content-20261026"></script>
+  <script defer src="stars.js?v=steps-20261026"></script>
+  <script defer src="flower.js?v=mobile-care-20261018"></script>
+  <script defer src="flower-cloud.js?v=3"></script>
+  <script defer src="matter.js?v=1"></script>
+  <script defer src="merge.js?v=3"></script>
+  <script defer src="app.js?v=garden-20261106"></script>
+  <script defer src="flower-cloud-config.js?v=2"></script>
+  <script defer src="flower-cloud-ui.js?v=3"></script>
+  <link rel="stylesheet" href="mobile-layout.css">
+<link rel="stylesheet" href="mobile-screen.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="vendor/daisyui-properties.css"><link rel="stylesheet" href="vendor/daisyui-button.css"><link rel="stylesheet" href="home-comic.css?v=20261013"><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-early.css?v=20261013"><link rel="stylesheet" href="home-pager.css?v=20261018-care"><script defer src="home-pager.js?v=20261018-care"></script><script defer src="progress-backup.js?v=20261018-care"></script></head>
+<body data-game-art="01">
+<main class="layout">
+  <aside class="intro">
+    <div class="wordmark"><span class="house-mark">⌂</span> 小房子的游乐日记</div>
+    <div class="chapter">四十六个小游戏 · 试玩版</div>
+    <h1>把小小的快乐，<br>收进今天的日记。</h1>
+    <p class="lead">四十六个小游戏都可以玩。帮家家安排小车接人，翻出一对家家，陪卟哩滚过小迷宫，也能经营小食堂、解开小屋的秘密。遇到失败，每局有两次复活机会：去比邻岛找家家说说话，再回来继续。</p>
+    <div id="sand-guide" class="instructions" hidden>
+      <h2>这一局，怎么玩？</h2>
+      <div><b>01</b><p><strong>三列排队，只选最前面的桶</strong><span>队首出发后，后面的桶才会往前补。</span></p></div>
+      <div><b>02</b><p><strong>小桶经过，彩沙落下</strong><span>只接桶口正上方四格宽的同色底沙。</span></p></div>
+      <div><b>03</b><p><strong>装满就飞走，让出空位</strong><span>没满会继续转。六个位置，要留一点余地。</span></p></div>
+    </div>
+    <div id="sand-note" class="note" hidden><span>✧</span><p>不赶时间，慢慢选。<br>收完这幅沙画，就完成今天的小挑战。</p></div>
+    <div class="instructions game-roadmap">
+      <h2>五十个小游戏</h2>
+      <div><b>01</b><p><strong>家纱</strong><span>可试玩 · 五关沙画</span></p></div>
+      <div><b>02</b><p><strong>家家乐</strong><span>五关 · 分数与区域目标</span></p></div>
+      <div><b>03</b><p><strong>接家家</strong><span>普通五关 · 高手挑战</span></p></div>
+      <div><b>04</b><p><strong>合家团圆</strong><span>可试玩 · 无尽合成</span></p></div>
+      <div><b>05</b><p><strong>抓家家</strong><span>可试玩 · 五关</span></p></div>
+      <div><b>06</b><p><strong>叠舞台</strong><span>可试玩 · 无限叠高</span></p></div>
+      <div><b>07</b><p><strong>舞台跑酷</strong><span>可试玩 · 无限跑酷</span></p></div>
+      <div><b>08</b><p><strong>家家小矿场</strong><span>可试玩 · 无限经营</span></p></div>
+      <div><b>09</b><p><strong>家家弹弹乐</strong><span>可试玩 · 无限反弹</span></p></div>
+      <div><b>10</b><p><strong>卟哩蛇蛇</strong><span>可试玩 · 无限吃点心</span></p></div>
+      <div><b>11</b><p><strong>应援棒转盘</strong><span>可试玩 · 无限挑战</span></p></div>
+      <div><b>12</b><p><strong>家家切切乐</strong><span>可试玩 · 无限切应援物</span></p></div>
+      <div><b>13</b><p><strong>卟哩泡泡墙</strong><span>可试玩 · 无限打泡泡</span></p></div>
+      <div><b>14</b><p><strong>家家守护战</strong><span>可试玩 · 无限守护</span></p></div>
+      <div><b>15</b><p><strong>应援物分拣站</strong><span>可试玩 · 无限分拣</span></p></div>
+      <div><b>16</b><p><strong>家家打歌台</strong><span>可试玩 · 无限节拍</span></p></div>
+      <div><b>17</b><p><strong>抓拍家家</strong><span>可试玩 · 无限抓拍</span></p></div>
+      <div><b>18</b><p><strong>卟哩打地鼠</strong><span>可试玩 · 无限挑战</span></p></div>
+      <div><b>19</b><p><strong>小房子跳跳</strong><span>可试玩 · 无限向上跳</span></p></div>
+      <div><b>20</b><p><strong>卟哩记忆秀</strong><span>可试玩 · 记住图案顺序</span></p></div>
+      <div><b>21</b><p><strong>应援暗号</strong><span>可试玩 · 猜图案暗号</span></p></div>
+      <div><b>22</b><p><strong>家家钓鱼日记</strong><span>可试玩 · 钓鱼收集与升级</span></p></div>
+      <div><b>23</b><p><strong>卟哩跳一跳</strong><span>可试玩 · 按住蓄力、松手跳跃</span></p></div>
+      <div><b>24</b><p><strong>家家小食堂</strong><span>可试玩 · 做饭、上菜、升级</span></p></div>
+      <div><b>25</b><p><strong>割绳喂卟哩</strong><span>可试玩 · 十二关机关解谜</span></p></div>
+      <div><b>26</b><p><strong>卟哩逃出小屋</strong><span>可试玩 · 三个房间找线索</span></p></div>
+      <div><b>27</b><p><strong>家家娃娃机</strong><span>可试玩 · 下爪抓玩偶、布置收藏柜</span></p></div>
+      <div><b>28</b><p><strong>卟哩堵车啦</strong><span>可试玩 · 挪动车辆、送卟哩出停车场</span></p></div>
+      <div><b>29</b><p><strong>卟哩飞飞</strong><span>可试玩 · 点击扑腾、穿过云门</span></p></div>
+      <div><b>30</b><p><strong>卟哩偷吃大作战</strong><span>可试玩 · 背对时前进、回头就装睡</span></p></div>
+      <div><b>31</b><p><strong>卟哩保龄球</strong><span>可试玩 · 划动投球、罐头碰撞与挑战球道</span></p></div>
+      <div><b>32</b><p><strong>卟哩2048</strong><span>可试玩 · 滑动合并、撤销与自动存档</span></p></div>
+      <div><b>33</b><p><strong>猫条拔河</strong><span>可试玩 · 看准时机、恢复体力、抢回猫条</span></p></div>
+      <div><b>34</b><p><strong>卟哩吃豆人</strong><span>可试玩 · 迷宫吃猫粮、大猫条反追、经典闯关</span></p></div>
+      <div><b>35</b><p><strong>卟哩大扫雷</strong><span>可试玩 · 看数字找雷、插旗、三档难度</span></p></div>
+      <div><b>36</b><p><strong>卟哩炸弹猫</strong><span>可试玩 · 放弹躲火、炸箱捡道具、六关</span></p></div>
+      <div><b>37</b><p><strong>家家翻翻乐</strong><span>可试玩 · 翻牌找一对、三档难度、本机纪录</span></p></div>
+      <div><b>38</b><p><strong>卟哩滚滚球</strong><span>可试玩 · 倾斜手机绕墙避洞、十二关回家</span></p></div>
+      <div><b>39</b><p><strong>家家地铁调度</strong><span>可试玩 · 点车出库、同色接人、清空过关</span></p></div>
+      <div><b>40</b><p><strong>卟哩找不同</strong><span>可试玩 · 曾艾佳原照，找出五处不同</span></p></div>
+      <div><b>41</b><p><strong>家家小屋塔防</strong><span>可试玩 · 建造炮台，守住六道防线</span></p></div>
+      <div><b>43</b><p><strong>家家倒果汁</strong><span>可试玩 · 自动存档持续闯关</span></p></div>
+      <div><b>44</b><p><strong>卟哩吞吞城</strong><span>可试玩 · 吞噬成长与连续街区</span></p></div>
+      <div><b>45</b><p><strong>家家推币机</strong><span>可试玩 · 投币推落，连续返币</span></p></div>
+      <div><b>46</b><p><strong>卟哩地下矿场</strong><span>可试玩 · 挖矿卖矿，升级钻机与持续矿区</span></p></div>
+
+      <div><b>48</b><p><strong>卟哩洗洗乐</strong><span>可试玩 · 水枪清洗，持续接订单</span></p></div>
+      <div><b>54</b><p><strong>家家乌龟盲袋</strong><span>可试玩 · 先铺盘、手动碰、三连提示</span></p></div>
+      <div><b>新</b><p><strong>家家赶公交</strong><span>可试玩 · 左右脚交替，关门前上车</span></p></div>
+      <div><b>新</b><p><strong>家家消沙子</strong><span>可试玩 · 拖盒子腾路，同色接沙</span></p></div>
+
+    </div>
+    <p class="prototype">玩法试玩版 · 五十个小游戏均可试玩<br>小花园可以每天浇水，陪种子慢慢长大。</p>
+  </aside>
+  <section class="game" aria-label="小房子的小游戏">
+    <nav class="mode-tabs" aria-label="小游戏选择"><button id="mode-home" class="mode-tab active">小屋<small>选游戏</small></button><button id="mode-sand" class="mode-tab">家纱<small>已开放</small></button><button id="mode-match3" class="mode-tab">家家乐<small>已开放</small></button><button id="mode-stars" class="mode-tab">接家家<small>已开放</small></button><button id="mode-merge" class="mode-tab">合家团圆<small>新试玩</small></button></nav>
+    <div id="home-view" class="home-view arcade-home" data-ui-version="comic-20261013">
+      <header class="arcade-masthead"><div class="arcade-brand"><img class="ui-icon" src="vendor/house.svg" alt="" aria-hidden="true" width="24" height="24"><div><h1>小房子游乐场</h1><p>55款小游戏</p></div></div><button id="home-flower" class="btn btn-ghost garden-link" type="button"><img class="ui-icon" src="vendor/house.svg" alt="" aria-hidden="true" width="24" height="24"><span>家园</span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"><small id="home-flower-summary" hidden>每天来陪小花长大</small></button></header>
+      <section class="quick-games" aria-labelledby="classics-heading"><h2 id="classics-heading" class="shelf-heading"><span>最近上新</span></h2><div class="quick-list">
+<a class="home-card game-row" href="jiajia-voxel.html?v=impact-20261107"><span class="row-picture"><img src="home-covers/play-jiajia-voxel.jpg" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>家家球球消气</strong><small>旋转立体积木 · 合成炮台 · 射击同色方块</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" width="24" height="24"></a>
+<a class="home-card game-row" href="jiajia-turtle.html?v=tap-20261024"><span class="row-picture"><img src="home-covers/play-jiajia-turtle.jpg" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>家家乌龟盲袋</strong><small>点两只即碰 · 三连提示</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" width="24" height="24"></a>
+<a class="home-card game-row" href="jiajia-light.html?v=20261018"><span class="row-picture"><img src="home-covers/play-jiajia-light.jpg" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>家家光线工坊</strong><small>转镜分光滤色 · 给电池充满电</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-wash.html?v=20261017"><span class="row-picture"><img src="home-covers/play-buli-wash.jpg" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>卟哩洗洗乐</strong><small>挑单分步洗 · 攒金币升工具</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" width="24" height="24"></a>
+
+<a class="home-card game-row" href="buli-mine.html"><span class="row-picture"><img src="home-covers/play-buli-mine.jpg" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>卟哩地下矿场</strong><small>挖矿卖矿升级钻机 · 矿道自动保存</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" width="24" height="24"></a>
+<a class="home-card game-row" href="jiajia-coin.html"><span class="row-picture"><img src="home-covers/play-jiajia-coin.jpg" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>家家推币机</strong><small>投一枚，推一堆 · 台面自动保存</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-hole.html"><span class="row-picture"><img src="home-covers/play-buli-hole.jpg" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>卟哩吞吞城</strong><small>越吞越大，从路锥吃到整片街区</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" width="24" height="24"></a>
+<a class="home-card game-row" href="jiajia-water.html"><span class="row-picture"><img src="home-covers/play-jiajia-water.jpg" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>家家倒果汁</strong><small>同色倒一瓶，持续闯新关 · 自动存档</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-difference.html"><span class="row-picture"><img src="jiajia-bonnet-20261021.webp" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>卟哩找不同</strong><small>曾艾佳原照，找出五处不同</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" width="24" height="24"></a>
+<a class="home-card game-row" href="jiajia-defense.html"><span class="row-picture"><img src="home-covers/play-jiajia-defense.jpg" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>家家小屋塔防</strong><small>建造炮台，守住六道防线</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" width="24" height="24"></a>
+</div></section>
+      <section class="new-game" aria-labelledby="new-game-heading"><h2 id="new-game-heading">刚更新</h2><a class="home-card metro-feature" href="jiajia-metro.html?v=parking-20261014"><span class="metro-copy"><strong>家家地铁调度</strong><small>点车出库，同色接人</small><span class="btn comic-play">开玩 <img class="ui-icon" src="vendor/arrow-right.svg" alt="" aria-hidden="true" width="24" height="24"></span></span><img class="metro-cover" src="home-covers/play-jiajia-metro.jpg" alt="家家的接人小游戏" width="440" height="330" fetchpriority="high"></a></section>
+      <section class="quick-games" aria-labelledby="quick-games-heading"><h2 id="quick-games-heading" class="shelf-heading"><span>玩一小会儿</span></h2><div class="quick-list"><a class="home-card game-row" href="jiajia-flip.html"><span class="row-picture"><img src="home-covers/play-jiajia-flip.jpg" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>家家翻翻乐</strong><small>限次翻牌，找出一对</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-roll.html"><span class="row-picture"><img src="home-covers/play-buli-roll.jpg" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>卟哩滚滚球</strong><small>倾斜手机，绕过迷宫</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-bomber.html"><span class="row-picture"><img src="home-covers/play-buli-bomber.jpg" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>卟哩炸弹猫</strong><small>放弹、躲火、闯关</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a></div></section>
+      <section class="slow-games" aria-labelledby="slow-games-heading"><h2 id="slow-games-heading" class="shelf-heading mint"><span>慢慢玩</span></h2><div class="slow-grid"><a class="home-card cover-link" href="jiajia-kitchen.html"><img class="slow-cover" src="home-covers/play-jiajia-kitchen.jpg" alt="" width="340" height="270" loading="lazy"><span><strong>家家小食堂</strong><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></span></a>
+<a class="home-card cover-link" href="jiajia-fishing.html"><img class="slow-cover" src="home-covers/play-jiajia-fishing.jpg" alt="" width="340" height="270" loading="lazy"><span><strong>家家钓鱼日记</strong><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></span></a></div></section>
+      <section class="more-games" aria-labelledby="more-games-heading"><h2 id="more-games-heading" class="shelf-heading"><span>还有这些</span></h2><div class="home-grid game-library"><button id="home-sand" class="home-card game-row"><span class="row-picture row-symbol"><img src="home-covers/play-home-sand.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>家纱</strong><small>派小桶，收彩沙 · 5 关</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></button>
+<button id="home-match3" class="home-card game-row"><span class="row-picture row-symbol"><img src="home-covers/play-home-match3.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>家家乐</strong><small>三消与清金框 · 5 关</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></button>
+<button id="home-stars" class="home-card game-row"><span class="row-picture row-symbol"><img src="home-covers/play-home-stars.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>接家家</strong><small>接小房子 · 普通5关 / 高手挑战</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></button>
+<button id="home-merge" class="home-card game-row"><span class="row-picture row-symbol"><img src="home-covers/play-home-merge.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>合家团圆</strong><small>小卟哩一路升级 · 无尽模式</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></button>
+<a class="home-card game-row" href="catch-jiajia-demo.html"><span class="row-picture row-symbol"><img src="home-covers/play-catch-jiajia-demo.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>抓家家</strong><small>翻找毛绒玩偶 · 5 关</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="stage-stack.html"><span class="row-picture row-symbol"><img src="home-covers/play-stage-stack.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>叠舞台</strong><small>能叠多少层 · 无限模式</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="stage-runner.html"><span class="row-picture row-symbol"><img src="home-covers/play-stage-runner.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>舞台跑酷</strong><small>能跑多少米 · 无限模式</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="mine-garden.html"><span class="row-picture row-symbol"><img src="home-covers/play-mine-garden.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>家家小矿场</strong><small>采矿、加工、送货 · 无限经营</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="bounce-jiajia.html"><span class="row-picture row-symbol"><img src="home-covers/play-bounce-jiajia.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>家家弹弹乐</strong><small>反弹卟哩打数字 · 无限回合</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-snake.html"><span class="row-picture row-symbol"><img src="home-covers/play-buli-snake.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>卟哩蛇蛇</strong><small>滑动转向吃点心 · 无限模式</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="light-wheel.html"><span class="row-picture row-symbol"><img src="home-covers/play-light-wheel.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>应援棒转盘</strong><small>点击发射应援棒 · 无限挑战</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="jiajia-slice.html"><span class="row-picture row-symbol"><img src="home-covers/play-jiajia-slice.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>家家切切乐</strong><small>划动切应援物 · 无限挑战</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-bubbles.html"><span class="row-picture row-symbol"><img src="home-covers/play-buli-bubbles.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>卟哩泡泡墙</strong><small>瞄准凑同色 · 无限挑战</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="jiajia-guard.html"><span class="row-picture row-symbol"><img src="home-covers/play-jiajia-guard.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>家家守护战</strong><small>拖动躲避 · 自动发射应援光</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="fan-sort.html"><span class="row-picture row-symbol"><img src="home-covers/play-fan-sort.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>应援物分拣站</strong><small>拖进对应箱子 · 无限分拣</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="jiajia-rhythm.html"><span class="row-picture row-symbol"><img src="home-covers/play-jiajia-rhythm.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>家家打歌台</strong><small>公开曲目待补</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="jiajia-photo.html"><span class="row-picture row-symbol"><img src="home-covers/play-jiajia-photo.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>抓拍家家</strong><small>等脸进圈拍照 · 无限抓拍</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-whack.html"><span class="row-picture row-symbol"><img src="home-covers/play-buli-whack.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>卟哩打地鼠</strong><small>点探头的卟哩 · 无限挑战</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="house-jump.html"><span class="row-picture row-symbol"><img src="home-covers/play-house-jump.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>小房子跳跳</strong><small>左右移动落平台 · 无限向上跳</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-memory.html"><span class="row-picture row-symbol"><img src="home-covers/play-buli-memory.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>卟哩记忆秀</strong><small>记住亮起顺序 · 无限挑战</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="fan-code.html"><span class="row-picture row-symbol"><img src="home-covers/play-fan-code.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>应援暗号</strong><small>猜出图案密码 · 无限挑战</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-hop.html"><span class="row-picture row-symbol"><img src="home-covers/play-buli-hop.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>卟哩跳一跳</strong><small>按住蓄力 · 松手跳跃</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-rope.html"><span class="row-picture row-symbol"><img src="home-covers/play-buli-rope.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>割绳喂卟哩</strong><small>划断绳子 · 机关解谜 · 12关</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-escape.html"><span class="row-picture row-symbol"><img src="home-covers/play-buli-escape.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>卟哩逃出小屋</strong><small>探索三个房间 · 找道具解谜</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="jiajia-claw.html"><span class="row-picture row-symbol"><img src="home-covers/play-jiajia-claw.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>家家娃娃机</strong><small>移动抓爪 · 抓玩偶 · 布置收藏柜</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-traffic.html"><span class="row-picture row-symbol"><img src="home-covers/play-buli-traffic.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>卟哩堵车啦</strong><small>挪开挡路车辆 · 让卟哩开出去</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-fly.html"><span class="row-picture row-symbol"><img src="home-covers/play-buli-fly.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>卟哩飞飞</strong><small>点击扑腾 · 云间穿梭 · 新游戏</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-sneak.html"><span class="row-picture row-symbol"><img src="home-covers/play-buli-sneak.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>卟哩偷吃大作战</strong><small>背对时前进 · 回头就装睡 · 12关</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-bowling.html"><span class="row-picture row-symbol"><img src="home-covers/play-buli-bowling.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>卟哩保龄球</strong><small>划动投球 · 罐头碰撞 · 挑战球道</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-2048.html"><span class="row-picture row-symbol"><img src="home-covers/play-buli-2048.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>卟哩2048</strong><small>滑动棋盘 · 合并相同数字 · 自动存档</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-tug.html"><span class="row-picture row-symbol"><img src="home-covers/play-buli-tug.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>猫条拔河</strong><small>按住发力 · 松手喘气 · 六只抢吃对手</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-pacman.html"><span class="row-picture row-symbol"><img src="home-covers/play-buli-pacman.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>卟哩吃豆人</strong><small>迷宫吃猫粮 · 大猫条反追 · 经典闯关</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="buli-mines.html"><span class="row-picture row-symbol"><img src="home-covers/play-buli-mines.jpg" alt="" aria-hidden="true" width="24" height="24" loading="lazy"></span><span class="row-copy"><strong>卟哩大扫雷</strong><small>看数字找雷 · 手机插旗 · 三档难度</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" aria-hidden="true" width="24" height="24"></a>
+<a class="home-card game-row" href="jiajia-bus.html?v=20261027"><span class="row-picture"><img src="home-covers/play-jiajia-bus.png" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>家家赶公交</strong><small>司机等等我 · 左右脚交替 · 关门前追上公交</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" width="24" height="24"></a>
+<a class="home-card game-row" href="jiajia-sand-slide.html?v=20261029"><span class="row-picture"><img src="home-covers/play-jiajia-sand-slide.png" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>家家消沙子</strong><small>拖盒子腾路 · 同色接沙 · 装满消掉沙画</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" width="24" height="24"></a><a class="home-card game-row" href="jiajia-word.html?v=avatar-20261101"><span class="row-picture"><img src="jiajia-bonnet-20261021.webp" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>家家同词相遇</strong><small>联机版待开放</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" width="24" height="24"></a><a class="home-card game-row" href="jiajia-egg-wall.html?v=20261102"><span class="row-picture"><img src="home-covers/play-jiajia-egg-wall.png" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>家家彩蛋涂墙</strong><small>旋转圆墙 · 点击发射 · 避开重复涂色</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" width="24" height="24"></a><a class="home-card game-row" href="jiajia-yarn.html?v=20261102"><span class="row-picture"><img src="home-covers/play-jiajia-yarn.png" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>家家拆毛线</strong><small>3D毛线小房子 · 拖动旋转 · 同色收线</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" width="24" height="24"></a><a class="home-card game-row" href="jiajia-screw.html?v=20261102"><span class="row-picture"><img src="home-covers/play-jiajia-screw.png" alt="" width="76" height="76" loading="lazy"></span><span class="row-copy"><strong>家家拆螺丝</strong><small>拆螺丝 · 木板悬挂掉落 · 同色收集</small></span><img class="ui-icon" src="vendor/caret-right.svg" alt="" width="24" height="24"></a></div></section>
+
+      <p class="arcade-footnote">每局有2次复活机会 · 去比邻岛找家家说话</p>
+    </div>
+    <div id="flower-view" class="flower-view" hidden>
+      <div class="flower-header"><button id="flower-back" type="button">‹ 回小屋</button><h2>家园</h2><button id="garden-tools" type="button" aria-haspopup="dialog">存档 / 说明</button></div>
+      <div id="flower-scene" class="flower-scene" aria-label="艾佳站在花盆旁边">
+        <div class="flower-scene-window" aria-hidden="true"></div>
+        <div class="flower-scene-floor" aria-hidden="true"></div>
+        <div id="home-plant" class="home-plant" data-stage="0" aria-label="还没发芽的花盆">
+          <svg viewBox="0 0 120 150" aria-hidden="true">
+            <path class="plant-stem" d="M60 107 Q55 76 60 51"/>
+            <g class="plant-leaves"><path d="M58 91 Q35 68 34 84 Q40 98 58 96"/><path d="M61 82 Q84 62 87 77 Q81 91 61 89"/></g>
+            <g class="plant-bloom"><circle cx="60" cy="31" r="12"/><circle cx="77" cy="43" r="12"/><circle cx="71" cy="62" r="12"/><circle cx="49" cy="62" r="12"/><circle cx="43" cy="43" r="12"/><circle class="plant-heart" cx="60" cy="47" r="10"/></g>
+            <path class="plant-pot" d="M31 103 H89 L81 138 H39 Z"/><ellipse class="plant-soil" cx="60" cy="103" rx="29" ry="7"/><path class="plant-rim" d="M27 100 H93 V110 H27 Z"/><ellipse class="plant-seed" cx="60" cy="94" rx="7" ry="4"/>
+          </svg>
+        </div>
+        <img class="flower-character" src="aijia-chibi.webp" alt="参考曾艾佳深蓝色刺绣服照片绘制的 Q 版人物" width="640" height="772">
+        <img class="flower-character-watering" src="aijia-watering.webp" alt="" aria-hidden="true" width="640" height="772">
+        <span class="flower-magic" aria-hidden="true">✦</span>
+        <div class="flower-water-drops" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <span class="flower-scene-label">窗边花房</span>
+      </div>
+      <section class="flower-info" aria-label="小花成长">
+        <div class="flower-info-top"><strong>成长记录</strong><span id="flower-count">本株 0 次 · 今日可浇 2 次</span></div>
+        <p id="flower-next" class="flower-next">再浇1次：发芽</p>
+        <div id="flower-progress" class="flower-progress" role="progressbar" aria-label="养花进度" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0"><span id="flower-fill"></span></div>
+        <p id="flower-status" class="flower-status" role="status">种子种好了，等你来浇水。</p>
+        <p id="flower-care" class="flower-intro">3天不浇会枯萎</p>
+      </section>
+      <div class="garden-actions">
+        <button id="flower-water" class="flower-water-button" type="button">给小花浇水</button>
+        <button id="flower-island" class="flower-island-button" type="button" aria-description="离开本页满10秒再回来，可领一次额外浇水">去比邻岛找家家</button>
+      </div>
+      <dialog id="garden-dialog" aria-labelledby="garden-dialog-title"><h2 id="garden-dialog-title">存档与养花说明</h2>
+      <section class="flower-cloud-box" aria-labelledby="flower-cloud-title">
+        <strong id="flower-cloud-title">保存养花进度</strong><button id="garden-backup" type="button">备份 / 恢复全站进度</button>
+        <p id="flower-cloud-status" role="status">游客也能玩，进度暂时只保存在这台设备；登录后自动云端保存。</p>
+        <button id="flower-cloud-login" type="button">用邮箱保存进度</button>
+        <button id="flower-cloud-retry" type="button" hidden>重试保存</button>
+        <button id="flower-cloud-logout" type="button" hidden>退出登录</button>
+      </section>
+      <p class="garden-rules">每天基础浇水2次。连续3天没有浇水，小花会枯萎；下一次浇水从发芽重新开始，不会补回当天已用次数。去比邻岛找家家说话，离开本页满10秒再回来，每次可领1次额外浇水，每天最多3次。</p><p class="garden-rules">首次浇水发芽，4次长高、8次枝叶舒展、18次枝叶茂盛、30次花苞、60次开花。开花后仍需浇水。按本地日期计，18日浇过水，21日还没浇就会枯萎。旧存档从更新后首次打开开始计时。</p><button id="garden-close" type="button">回家园</button></dialog>
+    </div>
+    <div id="sand-view" hidden>
+    <header class="game-header"><div><span class="eyebrow">SAND DIARY</span><h2>家纱 <span>✦</span></h2></div><button id="pause" class="icon-button" aria-label="暂停游戏">Ⅱ</button></header>
+    <div class="level-row"><label for="level">今天的沙画 <span id="level-badge">第 1 / 5 关</span></label><select id="level"><option value="0">01 · 小房子的晴天</option><option value="1">02 · 曾艾佳 · 烛光礼服</option><option value="2">03 · 彩虹门前</option><option value="3">04 · 斜纹织带</option><option value="4">05 · 回纹窗格</option></select></div>
+    <div class="progress-label"><span id="progress-text">已经收集 0%</span><span id="completed">装满 0 桶</span></div>
+    <progress id="progress" max="576" value="0" aria-label="沙画收集进度"></progress>
+    <div class="playfield">
+      <canvas id="board" width="432" height="532" aria-label="沙画与循环传送带：通过下方颜色桶按钮派桶接沙" tabindex="0"></canvas>
+      <div id="overlay" class="overlay" hidden><div class="match3-confetti" aria-hidden="true"></div><div><span id="result-icon">✦</span><h3 id="result-title"></h3><p id="result-body"></p><button id="result-action" class="primary">下一关</button><button id="result-home" class="secondary" hidden>回小屋</button></div></div>
+    </div>
+    <div class="belt-caption"><span><i></i> 循环传送带 <b id="slots">0 / 6</b></span><span>未满会继续转 ↻</span></div>
+    <div class="inventory-header"><h3>三列小桶 · 只选队首</h3><button id="restart" class="text-button">↻ 重新开始</button></div>
+    <p id="hint" class="hint" role="status">先试试薄荷绿桶，收走底下的草地。</p>
+    <div id="inventory" class="inventory" aria-label="待出发的颜色桶"></div>
+    <footer>收完后留在这里，想再玩就再来一局。</footer>
+    </div>
+    <div id="match3-view" class="match3-view" hidden>
+      <span class="eyebrow">COLOR PLAY</span><h3>家家乐 <span>✦</span></h3>
+      <p class="match3-intro">按住图标，向上下左右滑动一格。三个或更多连成一线就能消除；无效交换会弹回。前三关达到分数目标；后两关消除带“清”角标的金框，每格清一次。</p>
+      <div class="level-row"><label for="match3-level">当前关卡 <span id="match3-level-badge">第 1 / 5 关</span></label><select id="match3-level"><option value="0">01 · 初次相遇</option><option value="1">02 · 花园散步</option><option value="2">03 · 星光派对</option><option value="3">04 · 花圃清理</option><option value="4">05 · 角落整理</option></select></div>
+      <div class="match3-meta"><span>得分 <b id="match3-score">0</b></span><span>目标 <b id="match3-target">470</b></span><span>剩余 <b id="match3-moves">12</b> 步</span><span>图案 <b id="match3-colors">4</b> 种</span></div>
+      <div id="match3-board" class="match3-board" aria-label="家家乐三消棋盘"></div>
+      <p id="match3-hint" class="match3-hint" role="status">按住一颗图标，向上下左右滑动一格。</p>
+      <div class="match3-actions"><button id="match3-show-hint">提示一步</button><button id="match3-reset">↻ 重新开始</button></div>
+      <div id="match3-win" class="match3-win" role="dialog" aria-label="家家乐过关" hidden>
+        <div class="match3-confetti" aria-hidden="true"></div>
+        <div class="match3-win-card"><span id="match3-result-icon" class="match3-win-star" aria-hidden="true">✦</span><h4 id="match3-result-title">过关啦！</h4><p id="match3-result-body">第 1 关完成，收获 120 分。</p><div class="match3-win-actions"><button id="match3-win-next">下一关</button><button id="match3-win-home">回小屋</button></div></div>
+      </div>
+    </div>
+    <div id="stars-view" class="stars-view" hidden>
+      <span class="eyebrow">HOUSE CATCH</span><h3>接家家 <span>⌂</span></h3>
+      <p class="stars-intro">左右拖动小篮子接住发光的小房子，避开灰色乌云。漏接或碰到乌云都会失去一次机会。</p>
+
+      <div class="stars-meta"><span id="stars-level-badge">普通 1 / 5</span><span>已接 <b id="stars-caught">0 / 8</b></span><span>失误 <b id="stars-misses">0 / 4</b></span></div>
+      <div class="playfield stars-field">
+        <canvas id="stars-canvas" width="432" height="520" tabindex="0" aria-label="接家家游戏区域：左右移动篮子接住小房子，避开乌云"></canvas>
+        <div id="stars-overlay" class="overlay" role="dialog" aria-label="接家家开始游戏"><div class="match3-confetti" aria-hidden="true"></div><div class="stars-result-card"><span id="stars-result-icon">⌂</span><h4 id="stars-result-title">接住今晚的小房子</h4><div class="level-row stars-controls"><select id="stars-difficulty" aria-label="选择接家家难度"><option value="normal">普通闯关</option><option value="challenge">高手挑战</option></select><select id="stars-level" aria-label="选择接家家关卡"><option value="0">01 · 第一间小屋</option></select></div><p id="stars-result-body">移动小篮子接小房子，准备好了就开始。</p><button id="stars-action" class="primary">开始接家家</button><button id="stars-home" class="secondary">回小屋</button></div></div>
+      </div>
+      <p id="stars-hint" class="stars-hint" role="status">按住画面左右移动小篮子，键盘方向键也可以。</p>
+      <div class="match3-actions"><button id="stars-pause">Ⅱ 暂停</button><button id="stars-reset">↻ 重新开始</button></div>
+    </div>
+    <div id="merge-view" class="merge-view" hidden>
+      <span class="eyebrow">DROP & MERGE</span><h3>合家团圆 <span>❀</span></h3>
+      <p class="merge-intro">拖动上方图案选落点，松手投放。两个相同图案碰到就升级；不断合成、尽量拿高分。堆过警戒线才结束。</p>
+      <div class="merge-meta"><span>分数 <b id="merge-score">0</b></span><span>最高分 <b id="merge-best">0</b></span><span>下一个 <b id="merge-next">小卟哩</b></span></div>
+      <div id="merge-chain" class="merge-chain" aria-label="合成顺序"></div>
+      <div class="playfield merge-field">
+        <canvas id="merge-canvas" width="432" height="520" tabindex="0" aria-label="合家团圆游戏区域：左右拖动图案，松手投放，相同图案碰撞合成"></canvas>
+        <div id="merge-milestone" class="merge-milestone" role="status" hidden><span>✦ 解锁游泳家家 ✦</span><small>继续合成，挑战最高分</small></div>
+        <div id="merge-overlay" class="overlay" role="dialog" aria-label="合家团圆开始游戏"><div class="merge-result-card"><span id="merge-result-icon">❀</span><h4 id="merge-result-title">把小快乐合起来</h4><p id="merge-result-body">小卟哩一路合成更大的图案，堆满前挑战最高分。</p><button id="merge-action" class="primary">开始合成</button><button id="merge-home" class="secondary">回小屋</button></div></div>
+      </div>
+      <p id="merge-hint" class="merge-hint" role="status">按住上方图案左右拖动，松手投放；键盘左右键和空格也可以。</p>
+      <div class="match3-actions"><button id="merge-pause">Ⅱ 暂停</button><button id="merge-reset">↻ 重新开始</button></div>
+    </div>
+  </section>
 </main>
 </body>
 </html>

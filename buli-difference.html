@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+ <meta name="theme-color" content="#ffffff"><title>卟哩找不同</title>
+ <link rel="stylesheet" href="buli-difference.css?v=album-20261106"><link rel="stylesheet" href="island-revive.css">
+ <script defer src="buli-difference-scenes.js?v=album-20261106"></script><script defer src="island-revive.js"></script><script defer src="buli-difference.js?v=album-20261106"></script><script defer src="buli-difference-ui.js?v=album-20261106"></script>
+<script defer src="mobile-screen.js?v=touch-20261106" data-touch-only></script></head>
+<body>
+ <main class="difference-app">
+  <header class="toolbar"><a href="index.html" class="icon-button" aria-label="回小屋"><img src="vendor/house.svg" alt=""></a><button id="choose" class="scene-button">第 1 幅 <span aria-hidden="true">⌄</span></button><button id="pause" class="icon-button" aria-label="暂停"><img src="vendor/metro-pause.svg" alt=""></button></header>
+  <section class="scorebar" aria-label="游戏状态"><span id="clock" class="clock">02:00</span><div id="progress" class="progress" aria-label="已找到0处"></div><div id="lives" class="lives" aria-label="剩余3次容错"></div></section>
+  <section id="board" class="comparison" aria-label="对比上下两幅照片，点击五处不同">
+   <div class="photo-surface" id="original" role="img" aria-label="原图"><img class="base-photo" alt="" draggable="false"></div>
+   <div class="photo-surface" id="changed" role="img" aria-label="有五处不同的对照图"><img class="base-photo" alt="" draggable="false"></div>
+  </section>
+  <footer class="bottom-tools"><button id="help" class="help-button"><span aria-hidden="true">?</span> 玩法</button><p id="feedback" aria-live="polite">找出 5 处不同</p><button id="hint" class="help-button">提示 <b id="hint-count">1</b></button></footer>
+  <div id="dialog" class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" hidden>
+   <section class="dialog-card"><h1 id="dialog-title"></h1><p id="dialog-description"></p>
+    <div id="scene-picker" hidden>
+     <div class="scene-groups" role="group" aria-label="关卡类别"><button id="pick-photos" hidden type="button">原照</button><button id="pick-illustrations" type="button">Q 版</button></div>
+     <div id="scene-list"></div>
+     <div class="scene-pages"><button id="scene-prev" type="button">上一页</button><span id="scene-page" aria-live="polite"></span><button id="scene-next" type="button">下一页</button></div>
+    </div>
+    <div id="dialog-actions"></div><div id="revive-host"></div>
+   </section>
+  </div>
+ </main>
+</body></html>

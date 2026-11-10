@@ -1,0 +1,150 @@
+.flower-entry{display:flex;align-items:center;gap:14px;width:100%;margin:13px 0 25px;padding:13px 16px;border:1px solid #e8ddd2;border-radius:18px;background:linear-gradient(110deg,#fffaf2,#f3eee9);text-align:left;color:#58735f;box-shadow:0 7px 18px #7c6a5f12}
+.flower-entry:hover{transform:translateY(-2px)}
+.flower-entry-icon{display:grid;place-items:center;flex:none;width:51px;height:51px;border-radius:15px;background:#e9f1e7;font-size:30px}
+.flower-entry strong,.flower-entry small{display:block}
+.flower-entry strong{font-size:16px;margin-bottom:5px}
+.flower-entry small{font-size:11px;color:#8a968a}
+.flower-entry-arrow{margin-left:auto;font-size:29px;color:#95aa93}
+.flower-view{padding:4px 0 9px}
+.flower-header{display:flex;align-items:center;justify-content:space-between}
+.flower-header button{border:0;background:transparent;color:#658271;font-size:12px;padding:9px 4px}
+.flower-view h2{margin:6px 0 4px;font-size:24px;color:#526d5c}
+.flower-intro{margin:0 0 14px;color:#8b958c;font-size:12px;line-height:1.7}
+.flower-scene{position:relative;isolation:isolate;height:360px;overflow:hidden;border:1px solid #efe3dc;border-radius:23px;background:radial-gradient(circle at 26% 22%,#fffdf0 0,#fff7ee 36%,transparent 65%),linear-gradient(#f5eaf0,#f6efea 69%,#e7dbcf 69%,#dbc9b7);box-shadow:inset 0 2px 12px #fff9,0 9px 25px #886f5a1d}
+.flower-scene-window{position:absolute;left:10%;top:11%;width:35%;height:31%;border:8px solid #fffaf0;border-radius:55px 55px 10px 10px;background:linear-gradient(#d8eaf0,#eff7ee 75%);box-shadow:0 5px 15px #9c8d7b19}
+.flower-scene-window:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:6px;background:#fffaf0}
+.flower-scene-floor{position:absolute;left:-5%;right:-5%;bottom:0;height:28%;background:linear-gradient(#e9ddd0,#d8c3ad);transform:skewY(-2deg);transform-origin:right top}
+.flower-character,.flower-character-watering{position:absolute;right:-1%;bottom:-2%;width:59%;height:auto;max-height:96%;object-fit:contain;object-position:bottom;filter:drop-shadow(0 10px 11px #77665d3b);transform-origin:70% 92%;pointer-events:none}
+.flower-character{z-index:2}
+.flower-character-watering{z-index:4;opacity:0}
+.home-plant{position:absolute;z-index:3;left:3%;bottom:8px;width:45%;aspect-ratio:120/150;filter:drop-shadow(0 8px 7px #77665d3b)}
+.home-plant svg{display:block;width:100%;height:100%}
+.home-plant.watered svg{animation:plant-sway .6s ease-in-out}
+@keyframes plant-sway{35%{transform:rotate(-5deg)}70%{transform:rotate(4deg)}}
+.plant-stem{fill:none;stroke:#79a789;stroke-width:6;stroke-linecap:round}
+.plant-leaves{fill:#8db9a0}
+.plant-bloom{fill:#e9a7b5;transform-origin:60px 47px;transition:opacity .4s,transform .55s cubic-bezier(.2,1.4,.4,1)}
+.plant-heart{fill:#f8d881}
+.plant-pot{fill:#d6a58c;stroke:#be8f7d;stroke-width:2}
+.plant-soil{fill:#8e6650;stroke:#76503f;stroke-width:1}
+.plant-seed{fill:#e6bd70;stroke:#a67d47;stroke-width:1.5;opacity:1;transition:opacity .35s,transform .45s cubic-bezier(.2,1.4,.4,1);transform-origin:60px 94px}
+.plant-rim{fill:#ecc7a9;stroke:#be8f7d;stroke-width:2}
+.plant-stem,.plant-leaves{transform-origin:60px 107px;transition:opacity .35s,transform .55s cubic-bezier(.2,1.4,.4,1)}
+.home-plant[data-stage="0"] .plant-stem,.home-plant[data-stage="0"] .plant-leaves{opacity:0;transform:scaleY(.2)}
+.home-plant[data-stage="1"] .plant-stem,.home-plant[data-stage="1"] .plant-leaves{transform:scaleY(.6)}
+.home-plant[data-stage="0"] .plant-bloom,.home-plant[data-stage="1"] .plant-bloom{opacity:0;transform:scale(.2)}
+.home-plant[data-stage="1"] .plant-seed,.home-plant[data-stage="2"] .plant-seed,.home-plant[data-stage="3"] .plant-seed{opacity:0;transform:scale(.3)}
+.home-plant[data-stage="2"] .plant-bloom{opacity:.85;transform:scale(.42)}
+.home-plant[data-stage="3"] .plant-bloom{opacity:1;transform:scale(1)}
+.flower-magic{position:absolute;z-index:6;left:54%;top:62%;opacity:0;color:#f8d881;font-size:39px;text-shadow:0 0 9px #fff9;pointer-events:none}
+.flower-water-drops{position:absolute;z-index:6;left:41%;top:73%;pointer-events:none}
+.flower-water-drops i{position:absolute;width:7px;height:11px;border-radius:55% 55% 60% 60%;background:#80bdcf;opacity:0;transform:rotate(35deg)}
+.flower-scene.watering .flower-character{animation:flower-idle-swap 2.6s both}
+.flower-scene.watering .flower-character-watering{animation:flower-pour-pose 2.6s ease-in-out both}
+.flower-scene.watering .flower-magic{animation:flower-magic .7s ease-out .1s both}
+.flower-scene.watering .flower-water-drops i{animation:flower-drop .82s ease-in .72s both}
+.flower-scene.watering .flower-water-drops i:nth-child(2){animation-delay:.86s;left:5px}
+.flower-scene.watering .flower-water-drops i:nth-child(3){animation-delay:1s;left:11px}
+.flower-scene.watering .flower-water-drops i:nth-child(4){animation-delay:1.14s;left:3px}
+.flower-scene.watering .flower-water-drops i:nth-child(5){animation-delay:1.28s;left:8px}
+.flower-scene.watering .flower-water-drops i:nth-child(6){animation-delay:1.42s;left:14px}
+@keyframes flower-idle-swap{0%,7%{opacity:1}14%,95%{opacity:0}100%{opacity:1}}
+@keyframes flower-pour-pose{0%,7%{opacity:0;transform:translateY(7px) rotate(4deg)}15%{opacity:1;transform:translateY(-13px) rotate(1deg)}35%{opacity:1;transform:translateY(-16px) rotate(-4deg)}53%{opacity:1;transform:translateY(-14px) rotate(2deg)}72%{opacity:1;transform:translateY(-16px) rotate(-4deg)}90%{opacity:1;transform:translateY(-12px) rotate(0)}100%{opacity:0;transform:translateY(0) rotate(0)}}
+@keyframes flower-magic{0%{opacity:0;transform:scale(.2) rotate(-40deg)}35%{opacity:1;transform:scale(1.35) rotate(15deg)}100%{opacity:0;transform:scale(1.8) rotate(55deg)}}
+@keyframes flower-drop{0%{opacity:0;transform:translate(0,0) rotate(35deg) scale(.7)}20%{opacity:1}100%{opacity:0;transform:translate(-47px,9px) rotate(35deg) scale(1)}}
+.flower-scene-label{position:absolute;z-index:7;right:9px;top:13px;padding:6px 10px;border:1px solid #fff9;border-radius:999px;background:#fff9;color:#8b907c;font-size:10px}
+.flower-status{min-height:25px;margin:15px 2px 12px;font-size:12px;line-height:1.7;color:#668471}
+.flower-info{padding:15px 14px 12px;border:1px solid #e9e9df;border-radius:15px;background:#fcfbf6}
+.flower-info-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px}
+.flower-info-top strong{color:#58725e;font-size:13px}
+.flower-info-top span{color:#849187;font-size:10px;text-align:right}
+.flower-progress{height:9px;overflow:hidden;border-radius:999px;background:#e8e4dd}
+.flower-progress span{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#a1c4a5,#e8b2bb);transition:width .5s}
+.flower-water-button,.flower-island-button{display:block;width:100%;min-height:48px;border:0;border-radius:13px}
+.flower-water-button{margin-top:14px;background:#688f73;color:#fff;font-weight:700;font-size:15px;box-shadow:0 4px 0 #496d55}
+.flower-water-button:active:not(:disabled){transform:translateY(3px);box-shadow:0 1px 0 #496d55}
+.flower-water-button:disabled{background:#ccd7cc;color:#6e8071;box-shadow:none}
+.flower-island-button{margin-top:10px;background:#f1e9df;color:#796a5d;font-size:13px}
+.flower-island-button:disabled{background:#e7e5df;color:#a1a39b}
+.flower-cloud-box{margin-top:16px;padding:14px;border:1px solid #e4e7db;border-radius:15px;background:#f8faf4}
+.flower-cloud-box strong{font-size:13px;color:#58725e}
+.flower-cloud-box p{margin:7px 0 10px;color:#758879;font-size:11px;line-height:1.6}
+.flower-cloud-box button{min-height:38px;padding:0 13px;border:0;border-radius:10px;background:#dfece0;color:#4f7057;font-size:12px;font-weight:700}
+.flower-cloud-box button:disabled{opacity:.55}
+.flower-cloud-box [hidden]{display:none}
+.flower-cloud-box #flower-cloud-logout{margin-top:4px;background:#eee9e0;color:#806c60}
+@media(max-width:390px){.flower-scene{height:320px}.flower-character,.flower-character-watering{width:60%}.flower-view h2{font-size:22px}.flower-info-top{display:block}.flower-info-top span{display:block;text-align:left;margin-top:5px}}
+@media(prefers-reduced-motion:reduce){.plant-stem,.plant-leaves,.plant-bloom,.plant-seed,.flower-progress span{transition:none}.home-plant.watered svg{animation:none}}
+
+/* 家园直接适应屏幕，不缩小整页和触控按钮。 */
+body:has(#flower-view:not([hidden])){display:block!important;height:100dvh;min-height:0!important;overflow:hidden!important;background:#f7f4e9!important}
+body:has(#flower-view:not([hidden])) .layout{display:block!important;box-sizing:border-box;width:100%!important;max-width:960px;height:100dvh;min-height:0!important;margin:0 auto!important;padding:max(8px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+body:has(#flower-view:not([hidden])) .layout>.intro,body:has(#flower-view:not([hidden])) .mode-tabs{display:none!important}
+body:has(#flower-view:not([hidden])) .game{box-sizing:border-box;height:100%;min-height:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+#flower-view:not([hidden]){
+  display:grid!important;grid-template-columns:minmax(0,1fr);grid-template-rows:44px minmax(0,1fr) auto auto;
+  gap:10px;box-sizing:border-box;width:100%;max-width:580px;height:100%;min-height:0;margin:auto;padding:0;
+  --garden-ink:#263f34;--garden-muted:#4e6256;--garden-border:#d2dac7;
+}
+#flower-view .flower-header{display:grid;grid-template-columns:1fr auto 1fr;gap:6px}
+#flower-view .flower-header h2{margin:0;color:var(--garden-ink);font-size:24px;white-space:nowrap}
+#flower-view .flower-header button{min-height:44px;padding:0 8px;border:0;border-radius:10px;background:transparent!important;color:var(--garden-muted)!important;font-size:13px;box-shadow:none!important}
+#flower-back{justify-self:start}
+#garden-tools{justify-self:end}
+#flower-view .flower-scene{
+  --scene-floor:clamp(12px,10%,48px);
+  height:auto;min-height:0;border-color:#ccd6be;border-radius:18px;box-shadow:none;
+  background:radial-gradient(ellipse at 26% 27%,#f9f5d9,transparent 68%),#dbe6cf;
+}
+#flower-view .flower-scene-window{
+  box-sizing:border-box;left:9%;top:8%;width:42%;height:46%;
+  border:6px solid #fffae9;border-radius:48% 48% 6px 6px / 29% 29% 6px 6px;
+  background:radial-gradient(circle at 27% 25%,#fff2b6 0 8%,transparent 9%),
+    radial-gradient(ellipse 75% 42% at 15% 98%,#87af8c 0 97%,transparent 100%),
+    radial-gradient(ellipse 93% 54% at 92% 108%,#adc79a 0 98%,transparent 100%),#d6e9e8;
+  box-shadow:0 4px 0 #a7b69c,0 10px 22px #57755622;
+}
+#flower-view .flower-scene-window::before{left:calc(50% - 2px);width:4px;background:#fffae9}
+#flower-view .flower-scene-window::after{content:"";position:absolute;right:-10px;bottom:-9px;left:-10px;height:6px;border-radius:4px;background:#fff9e5}
+#flower-view .flower-scene-floor{
+  right:0;left:0;height:29%;transform:none;border-top:4px solid #f6e5c5;
+  background:repeating-linear-gradient(0deg,transparent 0 26px,#95634216 27px 28px),linear-gradient(#e6cca2,#e2bd90);
+}
+#flower-view .flower-character,#flower-view .flower-character-watering{right:3%;bottom:var(--scene-floor);width:auto;max-width:65%;height:77%;object-fit:contain;object-position:bottom right}
+#flower-view .home-plant{left:4%;bottom:var(--scene-floor);width:49%;height:auto;max-height:78%}
+#flower-view .home-plant[data-stage="1"] .plant-stem,#flower-view .home-plant[data-stage="1"] .plant-leaves{transform:scaleY(var(--plant-growth,.6))}
+#flower-view .home-plant[data-stage="2"] .plant-bloom{transform:scale(var(--plant-bloom,.42))}
+#flower-view .flower-scene-label{top:12px;right:12px;border-color:#fff8df;color:var(--garden-ink);background:#f8f4e2;font-size:12px}
+#flower-view .flower-info{box-sizing:border-box;min-width:0;padding:11px 12px;border-color:var(--garden-border);border-radius:14px;background:#fffcf1}
+#flower-view .flower-info-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:0 0 7px}
+#flower-view .flower-info-top strong{color:var(--garden-ink);font-size:15px;white-space:nowrap}
+#flower-view .flower-info-top span{display:inline;margin:0;color:var(--garden-muted);font-size:12px;text-align:right}
+#flower-view .flower-next{margin:0 0 5px;color:var(--garden-ink);font-size:14px;line-height:19px;font-weight:700}
+#flower-view .flower-progress{height:6px;background:#e3e7d9}
+#flower-view .flower-progress span{background:#679775}
+#flower-view .flower-status{min-height:0;margin:8px 0 0;color:var(--garden-ink);font-size:13px;line-height:18px}
+#flower-view .flower-intro{margin:3px 0 0;color:var(--garden-muted);font-size:12px;line-height:17px}
+#flower-view .garden-actions{display:grid;grid-template-columns:1.25fr 1fr;gap:8px}
+#flower-view .garden-actions button{box-sizing:border-box;width:100%;min-height:50px;margin:0;padding:4px 6px;border:1px solid transparent;border-radius:12px;font-size:15px;line-height:1.25;box-shadow:none!important}
+#flower-view .flower-water-button{background:#305e45!important;color:#fff!important}
+#flower-view .flower-water-button:disabled{background:#dce5d7!important;color:var(--garden-muted)!important;opacity:1}
+#flower-view .flower-island-button{border-color:var(--garden-border)!important;background:#fffcf1!important;color:var(--garden-ink)!important;font-size:13px}
+#garden-dialog{box-sizing:border-box;width:min(92vw,430px);max-height:90dvh;overflow:auto;padding:20px;border:1px solid #cdd8c5;border-radius:18px;background:#fffaf0;color:#42634c}
+#garden-dialog::backdrop{background:#24362466}
+#garden-dialog h2{margin:0 0 14px;font-size:21px}
+#garden-dialog .flower-cloud-box{margin:0;padding:12px}
+#garden-dialog .flower-cloud-box p,#garden-dialog .garden-rules{color:#53634f;font-size:13px;line-height:1.7}
+#garden-dialog button{min-height:44px}
+#garden-dialog #garden-close{width:100%;margin-top:8px;border:0;border-radius:10px;background:#517f5e!important;color:white!important;font-size:14px;box-shadow:none!important}
+@media(min-width:500px) and (max-height:600px){
+ #flower-view:not([hidden]){max-width:none;grid-template-columns:minmax(0,1fr) minmax(240px,39%);grid-template-rows:44px minmax(0,1fr) auto;gap:10px 12px}
+ #flower-view .flower-header{grid-column:1/-1;grid-row:1}
+ #flower-view .flower-scene{grid-column:1;grid-row:2/4}
+ #flower-view .flower-info{grid-column:2;grid-row:2;align-self:end}
+ #flower-view .garden-actions{grid-column:2;grid-row:3}
+}
+
+#flower-view .home-plant[data-withered="true"] .plant-stem,#flower-view .home-plant[data-withered="true"] .plant-leaves{opacity:1;transform:scaleY(.7) rotate(15deg);filter:grayscale(1) sepia(.6)}
+#flower-view .home-plant[data-withered="true"] .plant-seed{opacity:0}
+
+#flower-view #flower-care[data-urgent="true"],#flower-view .flower-status[data-urgent="true"]{color:#a33623;font-weight:700}

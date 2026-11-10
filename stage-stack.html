@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+  <link rel="stylesheet" href="island-revive.css">
+  <script src="game-art.js?v=buli-20261019" defer></script><script src="island-revive.js"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>叠舞台 · 小房子的游乐日记</title><link rel="stylesheet" href="stage-arcade.css"><link rel="stylesheet" href="leaderboard.css"><script defer src="stage-stack.js"></script><script defer src="leaderboard-ui.js"></script><script defer src="stage-stack-ui.js"></script>  <link rel="stylesheet" href="mobile-layout.css">
+<link rel="stylesheet" href="mobile-screen.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-early.css?v=20261013"></head>
+<body data-game-art="06"><main class="arcade-shell">
+  <header class="arcade-top"><a href="index.html">← 回小屋</a><span>JIA JIA · LITTLE GAMES</span></header>
+  <span class="eyebrow">BUILD THE STAGE</span><h1 class="arcade-title">叠舞台</h1>
+  <p class="arcade-intro">舞台板左右滑过时，点一下让它落下。一直叠到失手，看看你能搭多高。</p>
+  <section class="arcade-panel" aria-label="叠舞台游戏">
+    <div class="arcade-meta"><strong>无限叠高</strong><div class="arcade-progress">已叠 <strong id="progress">0</strong> 层 · 最佳 <strong id="best">0</strong> 层</div></div>
+    <div class="arcade-frame"><canvas id="stage" width="432" height="600" aria-label="叠舞台：点击画面放下移动的舞台板" tabindex="0"></canvas><div id="overlay" class="arcade-overlay"><div class="result-card"><img src="jiajia-white-20261021.webp" alt="Q版家家"><h2 id="result-title">帮家家搭舞台</h2><p id="result-text">看准舞台板经过的位置，点一下放下。</p><div class="result-actions"><button id="action">开始叠舞台</button><a class="secondary" href="index.html">回小屋</a></div></div></div></div>
+    <div class="arcade-control"><button id="drop">放下舞台</button><button id="pause" disabled>暂停</button></div><p class="arcade-tip">手机点画面或下方按钮；电脑按空格键。</p>
+  </section>
+  <section class="leaderboard"><h2>叠舞台排行榜 <small>前 10 名</small></h2><p id="leaderboard-status">正在读取排行榜…</p><ol id="leaderboard-list"></ol><form id="leaderboard-form" hidden><label for="leaderboard-name">上榜昵称</label><input id="leaderboard-name" maxlength="12" placeholder="1～12 个字" autocomplete="nickname"><button id="leaderboard-submit" type="submit" disabled>上传我的最佳层数</button></form></section>
+</main></body></html>

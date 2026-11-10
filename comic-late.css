@@ -1,0 +1,45 @@
+/* Scoped to the late games. Existing sizing, touch surfaces and layout stay in control. */
+body[data-game-art="36"] .game-card{background-image:var(--scene-garden);background-size:cover;background-position:center}
+body[data-game-art="36"] .bomb-button{font-size:0;background-image:var(--art-bomb);background-repeat:no-repeat;background-size:32px 32px;background-position:center 12px;padding-top:26px}
+body[data-game-art="36"] :is(#status,.control-hint){background-color:#fff5dfdd;color:#433b2c;border-radius:6px}
+body[data-game-art="27"] .machine-back{background-color:#efe6d1;background-image:var(--scene-wood,none);background-size:cover;background-position:center;box-shadow:none}
+body[data-game-art="27"] .back-lettering{color:#a2694433}
+body[data-game-art="27"] .cabinet{border:3px solid #855032;box-shadow:inset 0 0 0 5px #ffe7ad,0 5px 0 #855032}
+body[data-game-art="27"] .cabinet-sign{background:#ffda92 var(--scene-wood,none) center/cover;border-color:#9c643f}
+body[data-game-art="27"] .claw-stage{border-color:#9b6039;box-shadow:inset 0 0 0 3px #ffecba}
+body[data-game-art="27"] .machine-plush img,body[data-game-art="27"] #carried-plush{filter:drop-shadow(2px 0 #fff4d8) drop-shadow(-2px 0 #fff4d8) drop-shadow(0 2px #6f493e)}
+body[data-game-art="27"] .floor{background:#ffdc9b var(--scene-wood,none) center bottom/cover}
+body[data-game-art="27"] .rail{background:#f5dda1;border:2px solid #795940;box-shadow:0 3px #ab7850}
+body[data-game-art="28"] .scenery{background-image:var(--scene-garden,none);background-size:cover;background-position:center 60%}
+body[data-game-art="28"] .comic-scene-ready>*{visibility:hidden}
+body[data-game-art="28"] .board{border-color:#8b754c;background-color:#eadbab;background-image:linear-gradient(to right,#fff6d1 2px,transparent 2px),linear-gradient(to bottom,#fff6d1 2px,transparent 2px);box-shadow:inset 0 0 0 3px #b7a477}
+body[data-game-art="28"] .vehicle .car-body{background:var(--car);border:2px solid #655342;box-shadow:inset 0 3px #fff2c4,0 3px #6d513c77}
+body[data-game-art="28"] .vehicle.target .car-body{background:#ffa960;border-color:#82472e}
+body[data-game-art="28"] .car-window{background:#e3f4f2;border:2px solid #667976;box-shadow:none}
+body[data-game-art="28"] .car-letter{color:#574b3b;font-weight:900;text-shadow:0 1px #fff8d8}
+body[data-game-art="29"] #scene,body[data-game-art="30"] #scene,body[data-game-art="31"] #scene,body[data-game-art="33"] #scene,body[data-game-art="34"] #scene,body[data-game-art="36"] #scene,body[data-game-art="38"] #scene,body[data-game-art="39"] #scene{border-color:#876544;box-shadow:inset 0 0 0 3px #fff2cc}
+body[data-game-art="32"] .board{border:3px solid #95623c;background:#dcac68 var(--scene-wood,none) center/cover;box-shadow:inset 0 0 0 4px #ffdea5,0 5px #8e5e3c}
+body[data-game-art="32"] .slot{background:#f6d7a2;border:2px solid #c19760;box-shadow:inset 0 2px #b6864944}
+body[data-game-art="32"] .slot:after{content:"";display:block;height:100%;background:var(--art-flower,none) center/45% no-repeat;opacity:.25}
+body[data-game-art="32"] .tile-inner{border:2px solid #895e3f;box-shadow:0 3px #895e3f66;background:var(--tile-color)}
+body[data-game-art="32"] .tile-number{color:#644229;background:#fff4d8;border:1px solid #d9b57b}
+body[data-game-art="32"] .tile img{height:68%;width:80%;left:10%;filter:drop-shadow(0 2px #bb824951)}
+body[data-game-art="34"] .cabinet{border-color:#87613c;background:#e5c092}
+body[data-game-art="35"] #cabinet{border:3px solid #92653c;box-shadow:inset 0 0 0 4px #ffe5ae,0 5px #875d3d;background:#ffeec9}
+body[data-game-art="35"] .board{background:#779a5a;border:3px solid #8f683b;border-radius:8px;overflow:hidden}
+body[data-game-art="35"] .cell{position:relative;background:#9cbb7b;border-color:#72965c;box-shadow:inset 0 2px #e5f1c7,inset -1px -2px #72965c66}
+body[data-game-art="35"] .cell.open{background:#fff1cf;box-shadow:none;border-color:#c6aa78;color:#795837}
+body[data-game-art="35"] .cell.n1{color:#2f91bc}body[data-game-art="35"] .cell.n2{color:#4d923e}body[data-game-art="35"] .cell.n3{color:#cc7450}
+body[data-game-art="35"] .cell img{position:absolute;inset:13%;width:74%;height:74%;object-fit:contain;pointer-events:none}
+body[data-game-art="35"] .cell .comic-grass{opacity:.32;inset:22%;width:56%;height:56%}
+body[data-game-art="35"] .cell.flagged{color:#d66b44;background:#e1ecac;text-shadow:1px 1px #fff3d0}
+body[data-game-art="37"] .album{border:3px solid #8b6041;box-shadow:inset 0 0 0 4px #ffe8bc,0 5px #8b6041;background:#ffe9c3}
+body[data-game-art="37"] .album-body{background:#f7d9ad var(--scene-wood,none) center/cover}
+body[data-game-art="37"] .card.back{background:#ffb78b;border:2px solid #fff1cf;box-shadow:0 3px #a6724d}
+body[data-game-art="37"] .card.back:after{border:2px dashed #fff4d4;inset:5px}
+body[data-game-art="37"] .card.back img.card-flower{inset:23%;height:54%;width:54%;padding:0;opacity:.72}
+body[data-game-art="37"] .card-number{color:#8d593d;font-weight:800}
+body[data-game-art="37"] .card.open,body[data-game-art="37"] .card.matched{border:2px solid #8f6748;background:#fff1d1;box-shadow:0 3px #b47c4f}
+body[data-game-art="37"] .card.open>img,body[data-game-art="37"] .card.matched>img{filter:drop-shadow(1px 0 #77543e) drop-shadow(-1px 0 #77543e)}
+body[data-game-art="38"] #scene{border:3px solid #8c663d;background:#f2d79b}
+body[data-game-art="39"] #scene{background:#dcdfb1;border:3px solid #7c664a}

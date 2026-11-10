@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <link rel="stylesheet" href="island-revive.css">
+  <script src="game-art.js?v=buli-20261019" defer></script><script src="island-revive.js"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f5f1e8"><link rel="icon" href="data:,"><title>卟哩保龄球 · 小房子</title><link rel="stylesheet" href="buli-bowling.css">  <link rel="stylesheet" href="mobile-layout.css">
+<link rel="stylesheet" href="mobile-screen.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-late.css?v=20261013"></head>
+<body data-game-art="31">
+<main class="bowling-app">
+  <header><a class="home" href="index.html">‹ 回小屋</a><span class="brand">小房子的游乐日记</span><button id="restart" type="button">重新开局</button></header>
+  <div class="title-row"><div><p class="eyebrow">BULI'S LITTLE BOWLING CLUB</p><h1>卟哩保龄球<span>罐头碰碰乐</span></h1><p class="subtitle">把小球滚向罐头，看看能倒下几只。</p></div><img class="hero-cat" src="buli-hop-standing.png" alt="灰棕虎斑、圆黄眼睛的卟哩"></div>
+  <div class="mode-tabs" role="group" aria-label="选择玩法"><button id="classic-mode" type="button" aria-pressed="true">经典十局 <small>全倒 · 补中</small></button><button id="challenge-mode" type="button" aria-pressed="false">障碍挑战 <small>五条趣味球道</small></button></div>
+  <section class="challenge-picker" id="challenge-picker" hidden><label for="lane">挑一条球道</label><select id="lane"><option value="0">01 猫抓板小岛</option><option value="1">02 双生毛线球</option><option value="2">03 左边的午睡垫</option><option value="3">04 右边的小花盆</option><option value="4">05 曲折猫咪步道</option></select><p id="lane-hint"></p></section>
+  <div class="play-layout">
+    <section class="stage" aria-label="保龄球球道">
+      <canvas id="scene" width="460" height="590" tabindex="0" role="application" aria-label="保龄球球道。向上划动投球；方向键瞄准，A、D 摆球，空格投球，P 暂停。" aria-describedby="swipe-help"></canvas>
+      <div class="hud"><span id="frame-label">第 1 局 · 第 1 投</span><strong id="standing-count">10 <small>只罐头</small></strong></div>
+      <button class="pause" id="pause" type="button" aria-label="暂停投球" disabled>Ⅱ</button>
+      <div class="swipe-cue" id="swipe-cue"><span>↑</span><b>从下方向上划，投出小球</b><small>点下方球道摆球 · 划得越长，力量越大</small></div>
+      <div id="paused-panel" class="paused-panel" hidden><div><p>卟哩歇一歇</p><h2>投球已暂停</h2><button id="resume" class="primary" type="button">继续滚动 →</button></div></div>
+    </section>
+    <aside class="control-card" aria-label="投球控制和结果">
+      <div class="score-summary"><div><span id="score-caption">已结算得分</span><strong id="total">0</strong></div><div><span id="record-caption">最高纪录</span><strong id="best">0</strong></div></div>
+      <section class="aim-panel" id="aim-panel"><p class="control-heading">01 摆好球　02 瞄准　03 投出</p>
+        <label for="position">摆球位置 <output id="position-value">居中</output></label><input id="position" type="range" min="-82" max="82" value="0" step="2">
+        <label for="angle">瞄准方向 <output id="angle-value">正前方</output></label><input id="angle" type="range" min="-16" max="16" value="0" step="1">
+        <label for="power">投球力量 <output id="power-value">80%</output></label><input id="power" type="range" min="40" max="100" value="80" step="5">
+        <button id="throw" class="primary throw-button" type="button">投出小球 <span>↗</span></button>
+        <p class="key-help">也可按方向键瞄准 · A / D 摆球 · 空格投球</p>
+      </section>
+      <section id="roll-result" class="roll-result" hidden><span id="result-tag">这一投</span><h2 id="result-title"></h2><p id="result-text"></p><button id="next" class="primary" type="button">准备下一投 →</button><button id="again" type="button" hidden>再玩一局 ↗</button><button id="next-lane" type="button" hidden>下一条球道 →</button></section>
+      <p id="status" role="status" aria-live="polite">先试一颗直球吧。向上划动球道，或点「投出小球」。</p>
+    </aside>
+  </div>
+  <section class="score-section" id="score-section" aria-label="十局计分卡"><div class="score-title"><h2>卟哩的计分卡</h2><span>X 全倒　/ 补中　– 沟球或未击倒</span></div><div class="scoreboard" id="scoreboard"></div><p id="bonus-note">全倒加后两投，补中加后一投；等到奖励投出后才显示累计分。</p></section>
+  <footer><p id="swipe-help"><b>向上划就能投。</b> 左右位置和瞄准线决定方向，划动长度决定力量。球掉进两侧沟里就不会击倒罐头。</p><details><summary>玩法与计分</summary><p>经典比赛共十局，每局最多两投。第一投击倒十只为全倒（X），这一局立即结束，并加上之后两投的倒下数量；两投合计十只为补中（/），加上之后一投。第十局全倒或补中会获得奖励投，最高 300 分。</p><p>挑战模式有五条障碍球道，每条最多两投，合计倒下数量达到目标就过关。软垫会真实弹开小球，罐头可以互相撞倒；每次结果都来自碰撞，没有随机中奖。</p><p>切换玩法或球道会重新开局。最高纪录保存在当前浏览器；滚动中可暂停，离开页面会自动暂停。</p><p class="credit">操作方案参考 <a href="https://github.com/iliagrigorevdev/bowling" target="_blank" rel="noopener">Bowling 网页项目</a>；球道、碰撞与界面为独立实现，角色沿用卟哩游戏素材。</p></details><p id="storage-note" hidden>当前浏览器不能保存纪录，仍可正常游玩。</p></footer>
+</main>
+<script src="buli-bowling.js"></script><script src="buli-bowling-ui.js"></script>
+</body></html>

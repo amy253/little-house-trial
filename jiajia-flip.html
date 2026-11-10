@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f5f0e6"><title>家家翻翻乐 · 小屋游戏</title><link rel="stylesheet" href="jiajia-flip.css"><link rel="stylesheet" href="island-revive.css"><script src="game-art.js?v=buli-20261019" defer></script><script src="island-revive.js"></script>  <link rel="stylesheet" href="mobile-layout.css">
+<link rel="stylesheet" href="mobile-screen.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-late.css?v=20261013"></head>
+<body data-game-art="37">
+<main class="flip-app">
+  <header class="topbar"><a href="index.html">← 回小屋</a><span>一册家家的小瞬间</span><button id="help-open">? 玩法</button></header>
+  <div class="heading"><div><p class="eyebrow">JIAJIA'S LITTLE ALBUM</p><h1>家家翻翻乐</h1><p class="intro">翻一翻，找一找。把相同的可爱留在一起。</p></div><div class="portrait"><img src="jiajia-bonnet-20261021.webp" width="80" height="80" alt="戴格纹帽的家家"><span aria-hidden="true">✿</span></div></div>
+  <section class="album" aria-label="家家的配对相册">
+    <div class="album-header"><div><span class="album-number">01</span><span><strong>今日的小相册</strong><small>每翻开一张，消耗一次机会</small></span></div><label class="difficulty">这一册 <select id="difficulty" aria-label="配对难度"><option value="6">6 对 · 24 次</option><option value="8">8 对 · 32 次</option><option value="10">10 对 · 40 次</option></select></label></div>
+    <div class="stats"><div><span>剩余翻开</span><strong id="moves">24</strong><small>次</small></div><div><span>陪伴时间</span><strong id="elapsed">0:00</strong></div><div><span>已收集</span><strong id="pairs">0 / 6</strong><small>对</small></div></div>
+    <div class="album-body"><div id="board" class="board" aria-label="配对卡片"></div></div>
+    <div class="collection-line"><span aria-hidden="true">✿</span><span>把每个小瞬间，慢慢收齐</span><div class="progress-track" aria-hidden="true"><div id="progress"></div></div></div>
+  </section>
+  <p id="status" class="status" role="status" aria-live="polite">翻开第一张，开始收集家家的小瞬间。</p>
+  <nav class="controls" aria-label="游戏操作"><button id="restart">↻ 重新翻一册</button><button id="pause">Ⅱ 暂停</button></nav>
+  <div class="record"><span class="record-icon" aria-hidden="true">♡</span><div><small>这一册的最好纪录</small><strong id="best">等你留下第一份纪录</strong></div><span class="record-stamp" aria-hidden="true">GOOD<br>MEMORY</span></div>
+  <p class="footnote">相同的两张会留下 · 先比次数，再比时间<br>Tab 选卡，Enter / 空格翻牌</p><p id="storage-note" class="storage-note">最好纪录保存在当前浏览器 · 每档独立</p>
+</main>
+<div id="dialog" class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="dialog-copy" hidden><section class="dialog-card"><button id="dialog-close" class="close" aria-label="关闭面板，保持当前状态">×</button><span class="dialog-flower" aria-hidden="true">✿</span><p class="eyebrow">A PAGE OF LITTLE JOYS</p><h2 id="dialog-title"></h2><p id="dialog-copy"></p><button id="dialog-action" class="primary"></button></section></div>
+<script src="jiajia-flip.js"></script><script src="jiajia-flip-ui.js"></script>
+</body></html>

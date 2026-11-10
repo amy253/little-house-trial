@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <link rel="stylesheet" href="island-revive.css">
+  <script src="game-art.js?v=buli-20261019" defer></script><script src="island-revive.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#eac09f"><meta name="description" content="家家和卟哩的免费娃娃机。对准、停稳、下爪，把喜欢的娃娃带回小屋。">
+<title>家家娃娃机 · 小屋游戏</title>
+<link rel="stylesheet" href="jiajia-claw.css?v=grip-20261024">
+<script src="jiajia-claw.js?v=grip-20261024" defer></script><script src="jiajia-claw-ui.js?v=grip-20261024" defer></script>
+  <link rel="stylesheet" href="mobile-layout.css">
+<link rel="stylesheet" href="mobile-screen.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="touch-joystick.css?v=floating-20261023"><script src="touch-joystick.js?v=floating-20261023"></script><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-late.css?v=20261013"></head>
+<body data-game-art="27">
+<div class="page-shell">
+<header class="page-header"><a class="home-link" href="index.html" aria-label="返回小屋游戏">← 小屋游戏</a><button id="sound-button" class="quiet-button" aria-pressed="false" type="button">声音：关</button></header>
+<main>
+<div class="intro"><p class="eyebrow">LITTLE HOUSE ARCADE · 027</p><h1>把喜欢的，<span>抱回家。</span></h1><p>家家娃娃机开张啦。每一爪都免费，每一只都想跟你回家。</p></div>
+<div class="game-layout">
+<section class="machine-area" aria-label="家家娃娃机">
+<div id="goal-card" class="goal-card"><img id="goal-picture" src="jiajia-white-20261021.webp" alt="白裙家家"><div><small>今天想抱谁回家？</small><b id="goal-text">集齐五款，解锁全家福</b></div><span aria-hidden="true">♡</span></div>
+<div class="cabinet">
+<div class="cabinet-sign"><span class="sign-star" aria-hidden="true">✦</span><div><small>JIĀ JIĀ'S PLUSH CLUB</small><h2>家家娃娃机</h2></div><span class="sign-star" aria-hidden="true">✦</span></div>
+<div class="glass-frame">
+<div id="claw-stage" class="claw-stage" aria-label="拖动玻璃里的落爪影子，左右、前后对准娃娃脚下；也可使用下方摇杆和滑杆" role="img">
+<div class="machine-back"><span class="wall-doodle doodle-one" aria-hidden="true">✦</span><span class="wall-doodle doodle-two" aria-hidden="true">♡</span><span class="back-lettering" aria-hidden="true">a little hug<br>for your day</span></div>
+<div class="rail" aria-hidden="true"></div><div class="floor" aria-hidden="true"></div><div class="floor-trim" aria-hidden="true"></div>
+<div class="lamp lamp-left" aria-hidden="true"></div><div class="lamp lamp-right" aria-hidden="true"></div>
+<span id="stage-badge" class="stage-badge">免费 · 无限次</span>
+<div id="aim-line" class="aim-line" aria-hidden="true"><span>＋</span><small>落爪影子</small></div>
+<div class="pulse-cue" aria-hidden="true">绿灯亮了<br><b>再夹一下！</b></div>
+<div id="catch-pop" class="catch-pop" hidden><span class="catch-spark" aria-hidden="true">✦ ♡ ✧</span><img id="catch-picture" alt=""><small id="catch-quality">今天的抱抱 +1</small><b id="catch-name"></b><span>抱回家啦！</span></div>
+<div id="plush-layer"></div>
+<img id="carried-plush" class="carried-plush" alt="" hidden>
+<div class="chute-inside" aria-hidden="true"><span>取物口 ↓</span></div>
+<div id="claw-rope" class="claw-rope" aria-hidden="true"></div>
+<div id="claw-head" class="claw-head" aria-hidden="true"><div class="claw-carriage"></div><svg viewBox="0 0 90 80"><defs><linearGradient id="steel"><stop stop-color="#f4f4ee"/><stop offset=".45" stop-color="#a6b1b0"/><stop offset="1" stop-color="#f7fff8"/></linearGradient></defs><rect x="33" y="3" width="24" height="22" rx="8" fill="url(#steel)" stroke="#768b87" stroke-width="2"/><path class="finger finger-left" d="M36 21 L18 42 L23 64 L36 69"/><path class="finger finger-right" d="M54 21 L72 42 L67 64 L54 69"/><path d="M45 24 L45 58" fill="none" stroke="#899c96" stroke-width="6" stroke-linecap="round"/><circle cx="45" cy="21" r="7" fill="#f3cb8d" stroke="#8d9c92" stroke-width="2"/></svg></div>
+<div class="glass-glint" aria-hidden="true"></div>
+</div>
+</div>
+<div class="machine-console">
+<div class="grip-panel" id="grip-panel"><div class="grip-caption"><span id="target-name">摆幅越小，下爪越稳</span><b id="grip-text">先移动爪子</b></div><div id="grip-meter" class="grip-meter" role="progressbar" aria-label="机械爪摆动幅度，越小越稳" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="grip-fill"></span></div></div>
+<p id="machine-status" class="machine-status" role="status" aria-live="polite">左右 + 前后对位 → 影子移到脚下 → 停稳下爪</p>
+<div class="control-row"><div class="direction-pad touch-pad" aria-label="按住滑动摇杆瞄准"><button id="move-back" class="move-button" type="button" aria-label="按住向后移动爪子">↑</button><button id="move-right" class="move-button" type="button" aria-label="按住向右移动">→</button><button id="move-left" class="move-button" type="button" aria-label="按住向左移动">←</button><button id="move-front" class="move-button" type="button" aria-label="按住向前移动爪子">↓</button><button id="joystick" type="button" class="touch-joystick" aria-label="移动摇杆：按住并滑动"><span class="touch-arrows" aria-hidden="true">✥</span><span id="joystick-thumb" class="touch-thumb" aria-hidden="true"></span></button><span class="touch-hint">按住滑动 · 松手停</span></div><button id="drop-button" class="drop-button" type="button"><span>↓</span><b id="drop-label">下爪</b><span id="drop-hint" class="button-small">拖动玻璃瞄准</span></button></div>
+<button id="again-button" class="again-button" type="button" hidden>再玩一次 · 免费 ↻</button>
+<details class="fine-controls"><summary>精细对位</summary>
+<label class="slider-label" for="aim-slider">左右微调<input id="aim-slider" type="range" min="120" max="880" step="1" value="430" aria-label="左右调整爪子位置"></label>
+<label class="slider-label" for="depth-slider">前后微调 <span>后 ← → 前</span><input id="depth-slider" type="range" min="120" max="880" step="1" value="500" aria-label="前后调整爪子位置，左后右前"></label>
+</details>
+</div>
+<div class="cabinet-bottom"><div class="prize-door"><span>♡</span><b>娃娃取物口</b></div><div class="cabinet-note"><span>NO COINS NEEDED</span><b>快乐免费，抱抱也是。</b></div></div>
+</div>
+<div id="result-card" class="result-card" hidden><span aria-hidden="true">✦</span><p id="result-message" role="status" aria-live="polite"></p></div>
+<p class="how-to"><b>三步抱回家</b> ① 拖动玻璃，把影子移到娃娃脚下。<br>② 按「下爪」。③ 提起后，绿灯亮时再按一次！<br>绿色区能夹紧，金色区最稳；每爪只有一次补夹机会。<br>方向键移动，空格下爪 / 补夹。滑杆收在「精细对位」里。</p>
+</section>
+<aside class="collection-area" aria-labelledby="collection-title">
+<div class="collection-heading"><p class="eyebrow">YOUR LITTLE TREASURES</p><h2 id="collection-title">我的抱抱收藏</h2><p>抓到的每一只，都有自己的位置。</p></div>
+<div class="collection-stat"><div><b id="prize-total">0</b><span>只娃娃到家</span></div><div><b><span id="unique-total">0</span><small> / 5</small></b><span>款可爱已收集</span></div></div>
+<div id="family-photo" class="family-photo" hidden><b>全家福 · 集齐纪念</b><div id="family-cast"></div></div>
+<div class="display-box"><div class="shelf-label"><span>✦</span> 心头好展示架 <small>最多 3 只</small></div><div id="display-shelf" class="display-shelf"><p>把喜欢的娃娃摆在这里吧</p></div><div class="shelf-ledge"></div></div>
+<p class="collection-instruction">收集后点击娃娃，挑选你的展示阵容。</p>
+<div id="collection-list" class="collection-list"></div>
+<p id="save-note" class="save-note"></p>
+</aside>
+</div>
+<footer>属于小屋的一点点快乐 <span aria-hidden="true">♡</span></footer>
+</main>
+</div>
+</body>
+</html>

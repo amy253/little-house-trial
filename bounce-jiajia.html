@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <link rel="stylesheet" href="island-revive.css">
+  <script src="game-art.js?v=buli-20261019" defer></script><script src="island-revive.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#f7efe5">
+  <title>家家弹弹乐 · 小房子的游乐日记</title>
+  <link rel="stylesheet" href="bounce-jiajia.css?v=1">
+  <script defer src="bounce-jiajia-core.js?v=2"></script>
+  <script defer src="bounce-jiajia-ui.js?v=2"></script>
+  <link rel="stylesheet" href="mobile-layout.css">
+<link rel="stylesheet" href="mobile-screen.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-early.css?v=20261013"></head>
+<body data-game-art="09">
+<main class="bounce-shell">
+  <header class="bounce-top"><a href="index.html">← 回小屋</a><span>JIA JIA · LITTLE GAMES</span></header>
+  <section class="title-row"><div><span class="eyebrow">BULI BOUNCE</span><h1>家家弹弹乐</h1></div><div class="best-pill">最高<br><b id="best-round">1</b> 回合</div></section>
+  <p class="intro">拖动瞄准，松手让一串卟哩反弹。把数字打到 0，别让方块压到底线。</p>
+  <section class="game-card" aria-label="家家弹弹乐游戏">
+    <div class="hud"><span>第 <b id="round">1</b> 回合</span><span>卟哩球 <b id="ball-count">×3</b></span><span>分数 <b id="score">0</b></span></div>
+    <div class="canvas-wrap">
+      <canvas id="bounce-stage" width="432" height="610" aria-label="拖动瞄准并松开发射卟哩球，反弹消除数字方块" tabindex="0"></canvas>
+      <div id="start-overlay" class="overlay">
+        <div class="result-card">
+          <img src="merge-tier-1.png" alt="小卟哩">
+          <h2 id="result-title">让卟哩弹起来</h2>
+          <p id="result-text">手指从下方卟哩往上拖，看到虚线后松手。每轮结束，方块会向下靠近一步。</p>
+          <div class="power-guide"><span><i>＋</i>加球</span><span><i>💥</i>全屏炸弹</span><span><i>↟</i>三球穿透</span></div>
+          <button id="start-button" type="button">开始弹弹乐</button>
+          <a href="index.html">回小屋</a>
+        </div>
+      </div>
+    </div>
+    <p id="status" class="status" role="status">拖动虚线瞄准，松开发射。</p>
+    <div class="actions"><button id="restart" type="button">↻ 重新开始</button></div>
+  </section>
+</main>
+</body>
+</html>

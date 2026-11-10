@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <link rel="stylesheet" href="island-revive.css">
+  <script src="game-art.js?v=buli-20261019" defer></script><script src="island-revive.js"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f7f2e9"><title>卟哩滚滚球 · 手机重力版</title><link rel="stylesheet" href="buli-roll.css"><link rel="stylesheet" href="mobile-layout.css"><link rel="stylesheet" href="mobile-screen.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="touch-joystick.css?v=floating-20261023"><script src="touch-joystick.js?v=floating-20261023"></script><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-late.css?v=20261013"></head>
+<body data-game-art="38"><main class="roll-app">
+ <header class="topbar"><a href="index.html">← 回小屋</a><span>小爪子，慢慢滚</span><button id="help-open">? 玩法</button></header>
+ <div class="heading"><p class="eyebrow">BULI'S WOODEN MAZE</p><h1>卟哩滚滚球<span>重力版</span></h1><p>轻轻倾斜手机，捎上鱼干，滚回温暖的小窝。</p></div>
+ <section id="motion-panel" class="motion-panel" aria-label="选择控制方式"><div class="mode-bar" role="group" aria-label="控制模式"><button id="gravity-mode" aria-pressed="false">手机重力</button><button id="touch-mode" aria-pressed="true">触控备用</button></div><div class="motion-actions"><button id="motion-enable" hidden>启用重力</button><button id="motion-calibrate" hidden>校准姿势</button></div><p id="motion-status" aria-live="polite">先点“启用重力”，平稳握住手机。</p></section>
+ <section class="game-card" aria-label="滚滚球迷宫">
+  <div class="level-bar"><div><span id="level-number">01</span><strong id="level-title">窗边第一滚</strong></div><button id="levels-open">12 关 · 选关 ↗</button></div>
+  <div class="stats"><span>鱼干 <b id="fish-count">0 / 2</b></span><span>最佳 <b id="best">未通关</b></span><span class="pill">慢慢来，没时限</span></div>
+  <div class="scene-wrap"><canvas id="scene" width="432" height="540" tabindex="0" aria-label="木质迷宫。重力模式下倾斜手机移动，按住刹车减速；触控模式按住画面向方向拖动。也可用箭头键或WASD，空格刹车。"></canvas>
+   <div id="dialog" class="dialog" hidden role="dialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="dialog-copy"><section class="dialog-card"><button id="dialog-close" class="close" aria-label="关闭面板">×</button><p class="eyebrow">A COZY WAY HOME</p><h2 id="dialog-title"></h2><p id="dialog-copy"></p><div id="level-list" class="level-list" hidden></div><button id="dialog-action" class="primary"></button></section></div>
+  </div>
+  <p id="instruction" class="instruction">轻轻倾斜手机 · 转弯前按刹车</p>
+ </section>
+ <div class="play-bar"><button id="go" class="primary">开始滚滚 →</button><button id="restart">↻ 重来</button><button id="pause">Ⅱ 暂停</button></div>
+ <p id="status" class="status" aria-live="polite">准备好了就开始，鱼干是额外的小奖励。</p>
+ <div id="control-panel" class="controls" data-mode="touch" role="group" aria-label="移动和刹车"><div class="dpad touch-pad"><button id="up" aria-label="按住向上">↑</button><button id="left" aria-label="按住向左">←</button><span aria-hidden="true">●</span><button id="right" aria-label="按住向右">→</button><button id="down" aria-label="按住向下">↓</button><button id="joystick" type="button" class="touch-joystick" aria-label="移动摇杆：按住并滑动"><span class="touch-arrows" aria-hidden="true">✥</span><span id="joystick-thumb" class="touch-thumb" aria-hidden="true"></span></button><span class="touch-hint">按住滑动 · 松手减速</span></div><div class="brake-wrap"><button id="brake" aria-label="按住刹车">● 刹车</button><span>转弯前，缓一缓</span></div></div>
+ <p class="footnote">方向键 / WASD 移动，空格刹车<br>掉进洞也能无限重试 · 回家 1 星，每枚鱼干 +1 星</p><p id="storage-note" class="storage-note">星星与关卡保存在当前浏览器</p>
+</main><script src="buli-roll.js?v=steady-20261024"></script><script src="buli-roll-motion.js?v=steady-20261024"></script><script src="buli-roll-ui.js"></script></body></html>

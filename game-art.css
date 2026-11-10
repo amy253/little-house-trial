@@ -1,0 +1,20 @@
+/* Gameplay styling; the home page keeps its selected editorial layout. */
+body[data-game-art]:not(:has(#home-view:not([hidden]))){--ink:#44392e;--paper:#fff7e6;--accent:#ee9a71;--mint:#7da994;color:var(--ink);min-height:100dvh;background-color:#f8f0df;background-image:var(--game-scene,var(--scene-wood));background-size:cover;background-position:center;font-family:"Microsoft YaHei",system-ui,sans-serif}
+body[data-game-art="03"]{--game-scene:var(--scene-sky)}
+body[data-game-art="14"],body[data-game-art="19"],body[data-game-art="29"]{--game-scene:var(--scene-daySky,var(--scene-wood))}
+body[data-game-art="06"],body[data-game-art="07"],body[data-game-art="11"],body[data-game-art="12"],body[data-game-art="16"]{--game-scene:var(--scene-stage)}
+body[data-game-art="10"],body[data-game-art="13"],body[data-game-art="18"],body[data-game-art="22"],body[data-game-art="23"],body[data-game-art="25"],body[data-game-art="28"],body[data-game-art="34"],body[data-game-art="36"]{--game-scene:var(--scene-garden)}
+body[data-game-art="24"],body[data-game-art="30"]{--game-scene:var(--scene-kitchen)}
+body[data-game-art="39"]{--game-scene:var(--scene-city)}
+body[data-game-art]:not(:has(#home-view:not([hidden]))) :is(main,.page-shell){color:var(--ink)}
+body[data-game-art]:not(:has(#home-view:not([hidden]))) :is(h1,.game-title){color:#352e26;text-shadow:0 1px #fff8e7;letter-spacing:.3px}
+body[data-game-art]:not(:has(#home-view:not([hidden]))) :is(.topbar,.hud,.stats,.score-bar,.toolbar,.level-bar,.arcade-hud){background-color:#fff7e6f2;border-color:#6d5844;box-shadow:0 2px 0 #6d58441c;color:#44392e}
+body[data-game-art]:not(:has(#home-view:not([hidden]))) :is(button:not(.hotspot):not(.card):not(.pad):not(.cell):not(.match3-tile):not(.vehicle):not(.choice):not(.slot),select){border-color:#735e4c;color:#46382b;background-color:#fff5df;box-shadow:0 2px 0 #8c755a35;font-family:inherit}
+body[data-game-art]:not(:has(#home-view:not([hidden]))) :is(.topbar,.arcade-header,main>header,.heading){background-color:#fff7e6ed;border-radius:10px}
+body[data-game-art]:not(:has(#home-view:not([hidden]))) :is(button.primary,.primary-button,#start,#action,#dialog-action,#shoot,#bomb,#brake,#kitchen-start){background-color:#f5b289;border-color:#6f5241;color:#3f2e22}
+body[data-game-art]:not(:has(#home-view:not([hidden]))) button:disabled{opacity:.58;box-shadow:none}
+body[data-game-art]:not(:has(#home-view:not([hidden]))) :is(.status,.hint,.tip,.intro,.subtitle,.storage-note){color:#6b5c49}
+body[data-game-art]:not(:has(#home-view:not([hidden]))) :is(.panel-card,.overlay-card,.modal-card,.dialog-card,.screen-drawer){background-color:#fff7e9;border-color:#685743;color:#44392e}
+body[data-game-art]:not(:has(#home-view:not([hidden]))) canvas{border-color:#685743;box-shadow:0 2px 0 #6d584427}
+body[data-game-art]:not(:has(#home-view:not([hidden]))) :is(.joystick,.touch-joystick){border-color:#6b7756;background-color:#ddeacdf0}
+body[data-game-art]:not(:has(#home-view:not([hidden]))) :is(.joystick-thumb,.touch-joystick-thumb){background-color:#9dc8a7;border-color:#596f50}

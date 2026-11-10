@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <link rel="stylesheet" href="island-revive.css">
+  <script src="game-art.js?v=buli-20261019" defer></script><script src="island-revive.js"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f5f1e8"><link rel="icon" href="data:,"><title>卟哩飞飞 · 小房子</title><link rel="stylesheet" href="buli-fly.css">  <link rel="stylesheet" href="mobile-layout.css">
+<link rel="stylesheet" href="mobile-screen.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-late.css?v=20261013"></head>
+<body data-game-art="29">
+ <main class="fly-app">
+  <header><a href="index.html">‹ 回小屋</a><span class="brand">小房子的游乐日记</span><button id="sound" type="button" aria-pressed="false">声音关</button></header>
+  <div class="title-row"><div><p class="eyebrow">A LITTLE CAT, A BIG SKY</p><h1>卟哩飞飞<span>云间旅行</span></h1></div><div class="record"><span>飞行纪录</span><strong id="best">0</strong><small>道云门</small></div></div>
+  <section class="fly-stage" id="stage" aria-label="卟哩飞飞游戏">
+   <canvas id="scene" tabindex="0" role="button" aria-label="点击向上飞，松手自然下落；电脑也可以按空格或上方向键" aria-describedby="play-help"></canvas>
+   <div class="hud"><span id="phase-label">准备出发</span><strong id="score">0</strong><small>道云门</small></div>
+   <button id="pause" class="pause" type="button" aria-label="暂停游戏" disabled>Ⅱ</button>
+   <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+   <section id="welcome" class="welcome"><span class="stamp">今日飞行计划</span><h2>小猫也想摸摸云</h2><p>点一下 ↑ 飞起来<br>松手 ↓ 自然下落</p><button id="start" type="button">带卟哩出发 <span>↗</span></button><small>从上下云门之间穿过去，就得 1 分</small></section>
+   <section id="overlay" class="overlay" hidden aria-label="飞行结果"><div class="result"><span id="result-label">这趟飞行</span><h2 id="result-title">下次再飞远一点</h2><div class="result-number"><strong id="result-score">0</strong><span>道云门</span></div><p id="result-text"></p><div class="medals" aria-label="飞行里程徽章"><span data-goal="5">5<br><small>初次展翅</small></span><span data-goal="15">15<br><small>云间穿梭</small></span><span data-goal="30">30<br><small>天空小猫</small></span></div><button id="restart" type="button">再飞一次 ↗</button><button id="resume" type="button" hidden>继续飞行</button></div></section>
+  </section>
+  <footer><p id="play-help"><b>点一下，飞一下。</b> 手机点画面，电脑点鼠标 / 按空格。碰到云门或上下边界，这局结束。</p><details><summary>飞行小贴士</summary><p>不用一直猛点。快落到缝隙下沿时，再点一下；第一道云门宽一些，熟悉后会逐渐加快。</p><p>到 5 / 15 / 30 分解锁飞行徽章，最高纪录会存在当前设备。</p><p class="credit">玩法参考 <a href="https://github.com/pyforgedev/flappy-bird" target="_blank" rel="noopener">Flappy Bird 网页项目</a>，角色沿用卟哩的透明游戏形象。</p></details><span id="storage-note" hidden>浏览器暂时不能保存，仍可正常玩。</span></footer>
+ </main>
+ <script src="buli-fly.js"></script><script src="buli-fly-ui.js"></script>
+</body></html>

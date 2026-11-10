@@ -1,0 +1,30 @@
+.merge-view{padding:6px 0 4px}
+.merge-view[hidden]{display:none}
+.merge-view h3{font-size:21px;letter-spacing:2px;margin:4px 0 8px}
+.merge-view h3 span{color:#c4929e}
+.merge-intro{font-size:12px;line-height:1.8;color:#7b857c;margin:0 0 16px}
+.merge-meta{display:flex;justify-content:space-between;gap:5px;margin:0 0 12px;padding:9px 11px;border-radius:9px;background:#f1f2eb;font-size:11px;color:#7f8a7d}
+.merge-meta b{color:#557562}
+.merge-chain{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:2px 1px 8px;margin:0 0 5px}
+.merge-chain-item{display:flex;align-items:center;justify-content:center;gap:5px;padding:5px 6px;border:1px solid #e6d9db;border-radius:999px;background:#fffdf9;color:#827d7c;font-size:10px;white-space:nowrap}
+.merge-chain-item.active{border-color:#cf9ca8;background:#fff3f5;color:#815966}
+.merge-chain-icon{display:grid;place-items:center;flex:none;width:22px;height:22px;overflow:hidden;border-radius:50%;background:var(--tone);color:#644c5a;font-size:13px}
+.merge-chain-icon img{display:block;width:100%;height:100%;object-fit:cover}
+.merge-field{background:#eae2e8}
+.merge-field canvas{touch-action:none;cursor:grab;outline:none}
+.merge-field canvas:active{cursor:grabbing}
+.merge-field canvas:focus-visible{outline:3px solid #b694b3;outline-offset:-4px}
+.merge-milestone{position:absolute;z-index:1;top:20%;left:50%;width:min(82%,310px);transform:translateX(-50%);padding:14px 18px;border:2px solid #e8bb79;border-radius:18px;background:#fff9e8eF;box-shadow:0 8px 28px #8c687b55;text-align:center;color:#815d62;pointer-events:none;animation:merge-celebrate .55s cubic-bezier(.2,1.4,.45,1) both}
+.merge-milestone[hidden]{display:none}
+.merge-milestone span{display:block;font-size:19px;font-weight:700;letter-spacing:2px}
+.merge-milestone small{display:block;margin-top:4px;font-size:11px;color:#8b7c76}
+@keyframes merge-celebrate{from{opacity:0;transform:translateX(-50%) scale(.65)}to{opacity:1;transform:translateX(-50%) scale(1)}}
+@media(prefers-reduced-motion:reduce){.merge-milestone{animation:none}}
+.merge-field .overlay{background:#f6eef3da}
+.merge-field .overlay:not(.won) .match3-confetti{display:none}
+.merge-result-card{position:relative;z-index:2;background:#fffdf8;border:2px solid #e9c9d3;border-radius:23px;padding:28px 20px;box-shadow:0 16px 42px #624d6330}
+.merge-result-card h4{font-size:25px;margin:8px 0;color:#626c69}
+.merge-result-card p{max-width:245px}
+.merge-result-card .secondary{margin-left:7px}
+#merge-result-icon{display:block;font-size:52px;line-height:1;color:#d9a5a9}
+.merge-hint{font-size:11px;color:#758375;line-height:1.7;min-height:20px;margin:12px 0 4px}

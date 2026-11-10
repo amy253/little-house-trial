@@ -1,0 +1,7 @@
+.canvas-wrap{background:#dcefe9}
+#jump{cursor:grab}
+#jump:active{cursor:grabbing}
+.result-card img{width:78px;height:92px;object-fit:contain;animation:buli-float 1.2s ease-in-out infinite alternate}
+.hud{align-items:center}
+.hud span:last-child{font-size:10px;color:#9b8d85}
+@media(prefers-reduced-motion:reduce){.result-card img{animation:none}}

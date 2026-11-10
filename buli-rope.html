@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <link rel="stylesheet" href="island-revive.css">
+  <script src="game-art.js?v=buli-20261019" defer></script><script src="island-revive.js"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f5eddd"><title>割绳喂卟哩 · 小屋游戏</title><link rel="stylesheet" href="buli-rope.css">  <link rel="stylesheet" href="mobile-layout.css">
+<link rel="stylesheet" href="mobile-screen.css"><script src="mobile-screen.js?v=touch-20261106" defer></script><link rel="stylesheet" href="game-art.css?v=20261013"><link rel="stylesheet" href="comic-mid.css?v=20261013"></head>
+<body data-game-art="25">
+<main class="rope-app">
+  <header class="page-header"><a class="home-link" href="index.html" aria-label="返回小屋">← 小屋</a><span>卟哩的小食光</span><button id="sound" class="icon-button" aria-label="关闭声音" aria-pressed="true">♪</button></header>
+  <div class="title-row"><div><p class="eyebrow">A LITTLE TREAT FOR BULI</p><h1>割绳喂卟哩</h1></div><div class="title-seal">鱼鱼<br>快递</div></div>
+  <div class="level-heading"><strong id="level-title">01 / 第一口小鱼</strong><span id="stars" aria-label="本关星星">☆ ☆ ☆</span></div>
+  <section class="stage" aria-label="割绳游戏场景">
+    <canvas id="rope-canvas" width="432" height="600" tabindex="0" aria-label="划过绳子，或点击绳子剪断。点击气泡可以点破它。"></canvas>
+    <div id="panel" class="panel" hidden><div class="panel-card" id="panel-card"></div></div>
+  </section>
+  <div class="accessible-actions" role="group" aria-label="键盘与按钮操作">
+    <button id="cut-rope-0" type="button">剪断绳子</button><button id="cut-rope-1" type="button" hidden>剪右绳</button><button id="cut-rope-2" type="button" hidden>剪右绳</button><button id="pop-bubble" type="button" hidden>点破气泡</button>
+  </div>
+  <p class="keyboard-note">也可以点按钮操作 · 键盘 Tab 选按钮，Enter 确认</p>
+  <p id="hint" class="hint" aria-live="polite">划过绳子，让小鱼落到卟哩面前。</p>
+  <nav class="game-tools" aria-label="游戏操作"><button id="restart">↻ 重来</button><button id="pause">Ⅱ 暂停</button><button id="levels">▦ 关卡</button><button id="help">? 玩法</button></nav>
+  <p class="footnote">不急，卟哩会一直等你。<span id="save-status">星星与关卡自动保存</span></p>
+</main>
+<script src="buli-rope.js"></script><script src="buli-rope-ui.js"></script>
+</body></html>

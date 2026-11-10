@@ -1,0 +1,15 @@
+/* 01–13: playable surfaces and props; existing screen sizing stays in charge. */
+body[data-game-art="01"] .queue-column{background:#f4dfb5;border:1px solid #ac8454;box-shadow:inset 0 0 0 2px #fff0cf}
+body[data-game-art="01"] .bucket-button{background:#fff1d3;border-color:#caa56c}
+body[data-game-art="01"] .queue-head{border-color:#698f6c;box-shadow:inset 0 2px #fff7e5,0 3px #bba373}
+body[data-game-art="01"] .queue-waiting{background:#e7d4ae}
+body[data-game-art="01"] .pail{border-color:#795d43;box-shadow:inset -5px 0 #62472822,inset 4px 0 #fff8df55}
+body[data-game-art="01"] .pail::before{border-color:#8a7255}
+body[data-game-art="02"] #match3-view{background-color:#fff1d5;background-image:linear-gradient(#fff3d9eb,#fff3d9eb),var(--scene-wood);background-size:cover;border-radius:14px}
+body[data-game-art="02"] .match3-board{background:#d9b07a;border:3px solid #916a44;box-shadow:inset 0 0 0 2px #f8dba2,0 4px #b08956}
+body[data-game-art="02"] .match3-tile{position:relative;padding:3px;background:#fff2d6;border:1.5px solid #c19962;box-shadow:inset 0 2px #fffaf0,0 2px #a77d4633;display:grid;place-items:center;text-shadow:0 1px #76543b}
+.comic-match-icon{position:absolute;inset:5%;width:90%;height:90%;object-fit:contain;pointer-events:none;user-select:none}
+body[data-game-art="05"] #scene{background-color:#fff0d3;background-image:linear-gradient(#fff0d366,#fff0d366),var(--scene-kitchen);background-size:cover;background-position:center;border-color:#aa8252;box-shadow:inset 0 0 0 4px #efd49e,0 5px #b59463}
+body[data-game-art="05"] #tray{background:#edc889;border-color:#986c42;box-shadow:inset 0 0 0 2px #ffe7b3,0 5px #b28d55}
+body[data-game-art="05"] .slot{background:#fff1ce;border-color:#b88b54;box-shadow:inset 0 3px #d8b78566}
+body[data-game-art="08"] #mine-map{outline:3px solid #86603d;outline-offset:-3px}

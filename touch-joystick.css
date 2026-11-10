@@ -1,0 +1,51 @@
+/* Retain the existing keyboard/button handlers; phones use one sliding control. */
+.touch-pad{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:4px!important;width:auto!important;grid-template:none!important;padding:0!important}
+.touch-pad>button:not(.touch-joystick),.touch-pad>.paw,.touch-pad>span:not(.touch-hint){display:none!important}
+button.touch-joystick{position:relative;flex:none;width:104px!important;height:104px!important;min-width:104px!important;min-height:104px!important;padding:0!important;border-radius:50%!important;border:2px solid #98a789;background:#c9d2b3cc;box-shadow:inset 0 0 0 9px #eaf0dd55;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;overflow:visible!important}
+button.touch-joystick:active:not(:disabled){transform:none}
+.touch-joystick .touch-arrows{font:70px/1 system-ui;color:#8fa07a77;pointer-events:none}
+.touch-joystick .touch-thumb{position:absolute;left:calc(50% - 20px);top:calc(50% - 20px);width:40px;height:40px;border-radius:50%;border:2px solid #6b815f;background:radial-gradient(circle at 35% 30%,#aabb91,#7f966c);box-shadow:0 3px 5px #56654233;pointer-events:none}
+.touch-pad .touch-hint{display:block;font:11px/1.4 system-ui;color:#697954;white-space:nowrap;margin:0!important}
+.sneak-app .touch-pad{margin:8px 0}
+/* One transient control at the finger's origin, outside transformed game roots. */
+body.floating-game .floating-pad{display:none!important}
+body.floating-game button.floating-stick{position:fixed!important;z-index:20!important;width:104px!important;height:104px!important;min-width:104px!important;min-height:104px!important;margin:0!important;padding:0!important;border-radius:50%!important;visibility:hidden;pointer-events:none!important;opacity:.65!important;background:#f7f4e1aa!important;border:2px solid #667258!important;box-shadow:none!important;transform:none!important;touch-action:none}
+body.floating-game button.floating-stick.floating-active{visibility:visible}
+body.floating-game .floating-stick .touch-thumb,body.floating-game .floating-stick .joystick-thumb{position:absolute;left:32px;top:32px;width:40px;height:40px;border-radius:50%;background:#728866cc;border:2px solid #fff9e8;pointer-events:none}
+body.floating-game .floating-stick :is(.touch-arrows,.stick-arrows){display:none}
+body.floating-game{height:100dvh!important;min-height:0!important;margin:0!important;padding:0!important;overflow:hidden!important;overscroll-behavior:none;touch-action:none;display:block!important}
+body.floating-game :is(main,.page-shell).one-screen-root,body.floating-game>main,body.floating-game>.page-shell{width:100%!important;max-width:none!important;height:100dvh!important;min-height:0!important;margin:0!important;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)!important;display:flex!important;flex-direction:column!important;zoom:1!important;gap:0!important}
+body.floating-game .page-shell>main{flex:1;min-height:0;display:flex;flex-direction:column;padding:0!important}
+body.floating-game main>:is(header,.topbar,.title,.heading,.title-row,.intro){flex:none;margin:0!important;padding:4px 96px 4px 8px!important;min-height:44px;max-height:52px;overflow:hidden}
+body.floating-game main>:is(.title,.heading,.title-row,.intro):not(:first-child){display:none!important}
+body.floating-game :is(.game-layout,.play-column,.machine-area,.cabinet,.game-card,.game-layout>.cabinet,.game-layout>.play-column){flex:1;min-height:0!important;min-width:0!important;display:flex!important;flex-direction:column!important;margin:0!important;padding:0!important;gap:0!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+body.floating-game :is(.scene-wrap,.scene-shell,.field,.map-wrap,.lot-scene){flex:1!important;min-height:0!important;width:100%!important;max-width:none!important;aspect-ratio:auto!important;height:auto!important;margin:0!important;border:0!important;border-radius:0!important;position:relative}
+body.floating-game :is(.scene-wrap,.scene-shell)>canvas{display:block;width:100%!important;height:100%!important;object-fit:contain}
+body.floating-game :is(.scene-head,.hud,.level-bar,.level-header,.cabinet-bar,.stats,.board-caption,.meters){flex:none;min-height:0!important;margin:0!important;padding:3px 8px!important}
+body.floating-game :is(.control-card:has(.floating-pad),.guide-card:has(.floating-pad),.control-heading,.key-note,.route-note,.control-hint){display:none!important}
+body.floating-game :is(.controls:has(.floating-pad),.control-row:has(.floating-pad)){display:contents!important}
+body.floating-game .bomb-button{position:fixed;z-index:12;right:max(16px,env(safe-area-inset-right));bottom:calc(72px + env(safe-area-inset-bottom));width:76px!important;height:76px!important;min-height:76px!important;opacity:.9;box-shadow:none!important;font-size:14px!important}
+body.floating-game .bomb-button small{display:none}
+body.floating-game :is(.bottom-tools,.game-tools,.main-actions){flex:none;margin:0!important;padding:3px 8px!important}
+body.floating-game :is(.status,.status-line){flex:none;margin:0!important;padding:3px 8px!important;min-height:0!important;font-size:11px!important}
+body.floating-game .mine-grid{flex:1;min-height:0;grid-template-rows:44px auto minmax(0,1fr) auto!important}
+body.floating-game .mine-grid .actions{position:absolute;bottom:max(12px,env(safe-area-inset-bottom));right:12px;z-index:4;max-width:220px;gap:4px}
+body.floating-game .mine-grid .controls{min-height:22px!important;padding:2px!important}
+body.floating-game .mine-grid .controls p{max-width:45%;white-space:normal;height:auto}
+body.floating-game .touch-pad~.drop-button{position:fixed;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:12;width:80px;min-width:80px;height:70px}
+body.floating-game :is(.machine-area,.cabinet){width:100%!important;max-width:none!important}
+body.floating-game #claw-stage{flex:1!important;width:100%!important;height:auto!important;min-height:0!important;max-width:none!important;aspect-ratio:auto!important;margin:0!important}
+body.floating-game .glass-frame{flex:1;min-height:0;display:flex;flex-direction:column}
+body.floating-game .cabinet>.board{flex:1;min-height:0;aspect-ratio:auto;display:grid;place-items:center}
+body.floating-game .cabinet>.board>canvas{width:100%!important;height:100%!important;min-height:0;object-fit:contain}
+body.floating-game .bomber-app.one-screen-root .game-card{display:flex!important;flex-direction:column!important}
+body.floating-game .bomber-app.one-screen-root .scene-wrap{width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;flex:1!important;margin:0!important}
+body.floating-game .mine-grid{grid-template-columns:minmax(0,1fr)!important}
+body.floating-game .mine-grid>:not(.actions){grid-column:1!important;grid-row:auto!important}
+body.floating-game .map-wrap>canvas{width:100%!important;height:100%!important;object-fit:contain}
+body.floating-game :is(.side:has(.floating-pad),.guide-column:has(.floating-pad)){display:none!important}
+body.floating-game .game-shell #board{width:min(100%,calc(100dvh - 180px))!important;height:auto!important;aspect-ratio:1!important;flex:none;margin:auto!important}
+body.floating-game .lot-scene{display:flex;flex-direction:column;align-items:center;justify-content:center}
+body.floating-game .parking-shell{width:min(100%,calc(100dvh - 190px))!important;max-width:100%!important;margin:auto!important}
+body.floating-game .parking-shell #board{width:100%!important;height:auto!important;aspect-ratio:1!important}
+body.floating-game .lot-scene .scenery{display:none}
